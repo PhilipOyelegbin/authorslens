@@ -22,7 +22,7 @@ const Founders = () => {
       </section>
 
       {/* initiators section */}
-      <section className="grid grid-cols-2 justify-center gap-5 px-5 my-10 md:px-20 lg:gap-10">
+      <section className="grid grid-cols-1 md:grid-cols-2 justify-center gap-5 px-5 my-10 md:px-20 lg:gap-10">
         {initiators?.map((initiator, index) => (
           <figure key={index} className="rounded-2xl shadow-lg shadow-slate-500">
             <img src={initiator.avatar} className="bg-gray-500 mx-auto w-full h-80 rounded-t-2xl lg:h-[500px]" alt={`photograph of ${initiator.full_name}`} />
