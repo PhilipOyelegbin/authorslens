@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {axiosInstance} from './axiosInstance';
 
 export const useAxiosGet = (url) => {
@@ -11,9 +12,9 @@ export const useAxiosGet = (url) => {
             try {
                 const res = await axiosInstance.get(url);
                 setData(res?.data);
-                setLoading(false);
             } catch (error) {
                 setError(error?.message && "Unable to load data!");
+            } finally {
                 setLoading(false);
             }
         };
@@ -25,25 +26,31 @@ export const useAxiosGet = (url) => {
     );
 }
 
-// export const useAxiosPost = (url, user) => {
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
+// a function for deleting an article
+export const useAxiosDelete = (url) => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [data, setData] = useState(null);
 
-//     useEffect(() => {
-//         const createData = async () => {
-//             try {
-//                 const res = await axiosInstance.post(url, user);
-//                 setUser(res?.data);
-//                 setLoading(false);
-//             } catch (error) {
-//                 setError(error?.response?.data?.error && "Unable to create user!");
-//                 setLoading(false);
-//             }
-//         };
-//         createData();
-//     }, [url])
+    const navigate = useNavigate()
 
-//     return (
-//         {loading, error}
-//     );
-// }
+    useEffect(() => {
+        const deleteData = async () => {
+            try {
+                const res = await axiosInstance.delete(url);
+                setData(res?.data);
+                navigate("/");
+            } catch (error) {
+                setError(error?.message && "Unable to delete article!");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        deleteData();
+    }, [url])
+
+    return (
+        {loading, error, data}
+    );
+}

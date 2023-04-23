@@ -1,22 +1,42 @@
+import { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom';
 import {FaBars, FaTimes} from 'react-icons/fa'
-import { useState } from 'react';
 
 const Nav = () => {
   const [show, setShow] = useState(false);
-
-  const handleMenuContent = () => {
-    setShow(!show)
-  };
+  const [controlHeader, setControlHeader] = useState(true)
 
   const menuContent = [
     {id: 1, label: 'Home', link: '/'},
-    {id: 2, label: 'Create Blog', link: '/create'},
+    {id: 2, label: 'Blogs', link: '/blogs'},
+    {id: 3, label: 'Founders', link: 'founders'},
+    {id: 4, label: 'Write', link: 'write'},
   ];
 
+  show ? document.getElementById("root").classList.add("fixed") : document.getElementById("root").classList.remove("fixed");
+
+  function handleMenuContent() {
+    setShow(!show)
+  };
+
+  function handleScroll() {
+    if(window.scrollY > 50) {
+      setControlHeader(false)
+    } else {
+      setControlHeader(true)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [])
+
   return (
-    <nav className="flex justify-between items-center text-slate-200 p-5 md:px-20 md:py-5 z-30">
-      <h1 className="text-3xl font-mono font-black">Cumandra</h1>
+    <header className={`flex justify-between items-center shadow-sm shadow-slate-500 text-slate-200 px-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-[#13274f] ${!controlHeader && "md:-translate-y-48"}`}>
+      <h1 className="font-mono">Cumandra</h1>
       <button className="text-4xl cursor-pointer md:hidden block z-20" onClick={handleMenuContent}>
         {/* Icon when menu is closed. Heroicon name: outline/menu Menu open: "hidden", Menu closed: "block" */}
         <FaBars className={`md:hidden h-6 w-6 ${show ? 'hidden' : 'block'}`} />
@@ -24,12 +44,14 @@ const Nav = () => {
         {/* Icon when menu is open. Heroicon name: outline/x Menu open: "block", Menu closed: "hidden" */}
         <FaTimes className={`h-6 w-6 ${show ? 'block' : 'hidden'}`} />
       </button>
-      <ul className={`fixed bg-[#240556] gap-5 w-full pl-5 py-4 top-12 transition-all ease-in-out duration-300 md:flex md:items-center md:static md:w-auto md-pl-0 md:py-0 z-20 ${show ? 'right-0' : '-right-full'}`}>
-        {menuContent && menuContent?.map((contents) => (
-          <li className='text-xl mb-3 md:mb-0' key={contents.id}><NavLink className={({isActive})=> isActive ? 'text-[#C31192]' : undefined} to={contents.link} onClick={handleMenuContent}>{contents.label}</NavLink></li>
-        ))}
-      </ul>
-    </nav>
+      <nav className={`fixed bg-[#13274f] w-full pl-5 py-4 top-12 transition-all ease-in-out duration-300 md:static md:w-auto md-pl-0 md:py-0 z-20 ${show ? 'right-0' : '-right-full'}`}>
+        <ul className="gap-5 md:flex md:items-center">
+          {menuContent && menuContent?.map((contents) => (
+            <li className='text-2xl mb-3 md:mb-0' key={contents.id}><NavLink className={({isActive})=> isActive ? 'text-[#C31192]' : undefined} to={contents.link} onClick={handleMenuContent}>{contents.label}</NavLink></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
   )
 }
 

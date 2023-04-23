@@ -1,27 +1,41 @@
-import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from './components/Loader';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import SharedLayout from './components/SharedLayout';
-import Error from './pages/Error';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Create from './pages/Create';
-import Register from './pages/Register';
+import SingleBlog from './components/SingleBlog';
+const Home = lazy(() => import('./pages/landingPage/Home'));
+const Founders = lazy(() => import('./pages/aboutPage/Founders'));
+const Login = lazy(() => import('./pages/bloggerPage/Login'));
+const Register = lazy(() => import('./pages/bloggerPage/Register'));
+const Write = lazy(() => import('./pages/bloggerPage/Write'));
+const Error = lazy(() => import('./components/Error'));
+const Blog = lazy(() => import('./pages/blogPage/Blog'));
 
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path='/' element={<SharedLayout/>}>
-          <Route index element={<Home/>}/>
-          <Route path='login' element={<Login/>}/>
-          <Route path='register' element={<Register/>}/>
-          <Route element={<ProtectedRoutes/>}>
-            <Route path='create' element={<Create/>}/>
-          </Route>
-          <Route path='*' element={<Error/>}/>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<SharedLayout/>} errorElement={<Error/>}>
+        <Route index element={<Home/>}/>
+        <Route path='blogs' element={<Blog/>}/>
+        <Route path='founders' element={<Founders/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='register' element={<Register/>}/>
+        <Route element={<ProtectedRoutes/>}>
+          <Route path='write' element={<Write/>}/>
         </Route>
-      </Routes>
-    </>
+        <Route path='blog/:id' element={<SingleBlog/>}/>
+      </Route>
+    )
+  );
+
+  return (
+    <Suspense fallback={<Loader/>}>
+      <RouterProvider router={router}/>
+      <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+    </Suspense>
   )
 }
 
