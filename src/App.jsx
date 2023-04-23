@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from './components/Loader';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import SharedLayout from './components/SharedLayout';
-import SingleBlog from './components/SingleBlog';
+
 const Home = lazy(() => import('./pages/landingPage/Home'));
 const Founders = lazy(() => import('./pages/aboutPage/Founders'));
 const Login = lazy(() => import('./pages/bloggerPage/Login'));
@@ -13,6 +13,7 @@ const Register = lazy(() => import('./pages/bloggerPage/Register'));
 const Write = lazy(() => import('./pages/bloggerPage/Write'));
 const Error = lazy(() => import('./components/Error'));
 const Blog = lazy(() => import('./pages/blogPage/Blog'));
+const SingleBlog = lazy(() => import('./components/SingleBlog'));
 
 function App() {
   const router = createBrowserRouter(

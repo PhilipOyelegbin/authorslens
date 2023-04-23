@@ -17,27 +17,31 @@
   }
 
   h1 {
-    @apply text-[40px] leading-10 font-bold;
+    @apply text-[38px] leading-10 font-bold;
   }
 
   h2 {
-    @apply text-4xl font-semibold;
+    @apply text-[34px] leading-9 font-semibold;
   }
 
   h3 {
-    @apply text-[32px] leading-10 font-medium;
+    @apply text-3xl font-medium;
   }
 
   h4 {
-    @apply text-[28px] leading-8 font-medium;
+    @apply text-[26px] leading-8 font-medium;
   }
 
   h5 {
-    @apply text-2xl font-normal;
+    @apply text-[22px] leading-7 font-normal;
+  }
+
+  h6 {
+    @apply text-lg font-normal;
   }
 
   p {
-    @apply text-base font-normal;
+    @apply text-sm font-light;
   }
 
   h1, h2, h3, h4 {
@@ -59,8 +63,7 @@
   }
 
   .home-hero {
-    @apply md:h-screen flex flex-col-reverse md:flex-row justify-center items-center text-slate-300;
-    background: #13274f;
+    @apply lg:h-screen flex flex-col-reverse lg:flex-row justify-center items-center text-slate-300 bg-[#13274f] bg-fixed bg-cover;
     background: radial-gradient(circle, rgba(19,39,79,1) 20%, #69094e 40%, rgba(19,39,79,1) 80%);
   }
 

@@ -19,7 +19,7 @@ const BlogList = () => {
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5'>
             {blogs && blogs?.map(blog => (
                 <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
-                    <img className='rounded-t-2xl object-cover' src={blog.avatar || "cover-image"} loading="lazy" alt="cover_image" />
+                    <img className='rounded-t-2xl object-cover w-full h-80' src={blog.avatar || "cover-image"} loading="lazy" alt="cover_image" />
                     <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
                         <h3 className='text-[#C31192]'>{blog.username || "Unknown"}</h3>
                         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates facere quibusdam, nostrum dolorem necessitatibus cum explicabo quia doloremque, quae, at vel praesentium. Corrupti, ea commodi!</p>

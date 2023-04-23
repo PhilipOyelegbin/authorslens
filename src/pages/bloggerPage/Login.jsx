@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import signin from '../../assets/signin.png';
 import { getUser } from '../../store/loginSlice';
 import { loginSchema } from '../../utilities/validationShema';
+import signin from '../../assets/signin.png';
 
 const Login = () => {
     // a state for showing loading process
@@ -15,13 +15,14 @@ const Login = () => {
     const navigate = useNavigate()
 
     const formik = useFormik({
-        initialValues: {username: '', password: ''},
+        initialValues: {email: '', password: ''},
         validationSchema: loginSchema,
         onSubmit: (values) => {
-            const filteredUser = user.filter(obj => {return (obj.username == values.username && obj.password == values.password)})
+            const filteredUser = user.filter(obj => {return (obj.email == values.email && obj.password == values.password)})
             if(!filteredUser) {
-                toast.error("email or password incorrect")
+                toast.error("Email or password incorrect")
             } else {
+                formik.resetForm()
                 navigate("/write")
             }
         }
@@ -37,7 +38,7 @@ const Login = () => {
         {/* hero section */}
         <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/business-finance-employment-female-successful-entrepreneurs-concept-friendly-smiling-office-manager-greeting-new-coworker-businesswoman-welcome-clients-with-hand-wave-hold-laptop_1258-59122.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
             <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
-                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInDown animate__slow">
+                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
                     <h2>WELCOME BACK</h2>
                     <h4>Nice to see you again!</h4>
                 </div>
@@ -49,9 +50,9 @@ const Login = () => {
             <form onSubmit={formik.handleSubmit} autoComplete="off" className='p-5 w-full md:p-10 md:w-1/2'>
                 <h3 className='text-center'>Login to write a blog</h3>
                 <div className="form-control">
-                    <label htmlFor="username">Username</label>
-                    <input id="username" placeholder="Enter username" {...formik.getFieldProps("username")}/>
-                    {(formik.touched.username && formik.errors.username) && <p className='text-red-500'>{formik.errors.username}</p>}
+                    <label htmlFor="email">Email address</label>
+                    <input id="email" placeholder="example@mail.com" {...formik.getFieldProps("email")}/>
+                    {(formik.touched.email && formik.errors.email) && <p className='text-red-500'>{formik.errors.email}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="password">Password</label>

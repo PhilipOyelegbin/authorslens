@@ -23,6 +23,7 @@ const Register = () => {
             if(error) {
                 toast.error("")
             } else {
+                formik.resetForm()
                 navigate("/login")
             }
         }
@@ -37,7 +38,7 @@ const Register = () => {
         {/* hero section */}
         <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/confident-brunette-girl-showing-team-members-great-link-gain-new-skills-pointing-fingers-down-inviting-join-courses-group-smiling-advertise-product-standing-white-background_176420-51452.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
             <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
-                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInDown animate__slow">
+                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
                     <h2>BECOME A MEMBER</h2>
                     <h4>Get full access to post articles on the website</h4>
                 </div>
