@@ -30,8 +30,8 @@ const Write = () => {
         <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/i-ve-missed-you-very-much_637285-12200.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
             <div className='bg-black bg-opacity-60 text-slate-300 h-full flex flex-col justify-center items-center'>
                 <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
-                    <h2>WE MISSED YOU!</h2>
-                    <h4>We can't wait to read your next article</h4>
+                    <h2>WE MISSED YOU</h2>
+                    <h4>We can't wait to read your next article.</h4>
                 </div>
             </div>
         </section>

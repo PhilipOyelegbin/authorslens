@@ -1,25 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom"
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom"
 import { getLatestBlogs } from "../../store/latestBlogSlice";
 
 const LatestBlogs = () => {
-    const navigate = useNavigate();
-
     const dispatch = useDispatch()
     const {loading, blogs, error} = useSelector(state => state.latestBlogs)
-
-    const handleEdit = () => {
-        navigate("/edit")
-    };
-
-    const handleDelete = (id) => {
-        if(window.confirm('Are you sure you want to delete this article?')) {
-            const {loading, error, data} = useAxiosDelete(`/list/${id}`);
-            loading ? toast.load("Loading...") : error ? toast.error(error) : data
-        }
-    };
 
     useEffect(() => {
       dispatch(getLatestBlogs())
@@ -27,7 +13,7 @@ const LatestBlogs = () => {
 
   return (
     <section id="latest-blogs" className='px-3 my-10 md:px-20'>
-        <div className="flex lg:flex-row justify-between items-center gap-3">
+        <div className="flex justify-between items-center gap-3">
             <h2>Latest Blog</h2>
             <Link to="/blogs" className="btn">View all</Link>
         </div>
@@ -41,8 +27,7 @@ const LatestBlogs = () => {
                         <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates facere quibusdam, nostrum dolorem necessitatibus cum explicabo quia doloremque, quae, at vel praesentium. Corrupti, ea commodi!</p>
                         <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link>
                     </figcaption>
-                </figure>
-                ))
+                </figure>))
             }
         </div>
     </section>

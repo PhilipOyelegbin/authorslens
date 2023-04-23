@@ -3,7 +3,7 @@ const Header = () => {
   return (
     <header className="text-center py-5">
         <h2>Our Blogs</h2>
-        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-5 p-5 md:px-20">
+        <div className="flex justify-between items-center gap-5 p-5 md:px-20">
             <select name="" id="" className="w-fit">
                 <option value="">All</option>
                 <option value="">Technology</option>

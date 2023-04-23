@@ -35,15 +35,14 @@ const Nav = () => {
   }, [])
 
   return (
-    <header className={`flex justify-between items-center shadow-sm shadow-slate-500 text-slate-200 p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-[#13274f] ${!controlHeader && "-translate-y-48"}`}>
+    <header className={`flex justify-between items-center shadow-sm shadow-slate-500 text-slate-200 p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-[#13274f] ${!controlHeader && "-md:translate-y-48"}`}>
       <h1 className="font-mono">Cumandra</h1>
-      <button className="text-4xl cursor-pointer md:hidden block z-20" onClick={handleMenuContent}>
-        {/* Icon when menu is closed. Heroicon name: outline/menu Menu open: "hidden", Menu closed: "block" */}
-        <FaBars className={`md:hidden h-6 w-6 ${show ? 'hidden' : 'block'}`} />
 
-        {/* Icon when menu is open. Heroicon name: outline/x Menu open: "block", Menu closed: "hidden" */}
+      <button className="text-4xl cursor-pointer md:hidden block z-20" onClick={handleMenuContent}>
+        <FaBars className={`md:hidden h-6 w-6 ${show ? 'hidden' : 'block'}`} />
         <FaTimes className={`h-6 w-6 ${show ? 'block' : 'hidden'}`} />
       </button>
+
       <nav className={`fixed bg-[#13274f] w-full pl-5 py-4 top-20 transition-all ease-in-out duration-300 md:static md:w-auto md-pl-0 md:py-0 z-20 ${show ? 'right-0' : '-right-full'}`}>
         <ul className="gap-5 md:flex md:items-center">
           {menuContent && menuContent?.map((contents) => (

@@ -40,7 +40,7 @@ const Register = () => {
             <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
                 <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
                     <h2>BECOME A MEMBER</h2>
-                    <h4>Get full access to post articles on the website</h4>
+                    <h4>Get full access to post articles on the website.</h4>
                 </div>
             </div>
         </section>

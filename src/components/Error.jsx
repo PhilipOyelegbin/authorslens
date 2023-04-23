@@ -15,8 +15,8 @@ const Error = () => {
         <h3>Oops! Sorry, an unexpected error has occurred.</h3>
         <h1 className="text-9xl font-black">404</h1>
         <img className="bg-gray-500 rounded-full h-60 w-60 mx-auto" src={error} alt="image" />
-        <p>{routeError.statusText || routeError.message}</p>
-        <Link to='/' className="text-xl text-purple-500 bg-white hover:bg-slate-200 px-4 py-2 rounded-md mx-auto md:w-1/3">Go Back</Link>
+        <h5>{routeError.statusText || routeError.message}</h5>
+        <Link to='/' className="text-xl bg-purple-600 text-slate-300 hover:bg-purple-500 px-4 py-2 rounded-md mx-auto md:w-1/3">Go Back</Link>
       </div>
     </section>
   )

@@ -1,12 +1,10 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://cumandra-api.herokuapp.com/create/"
-
 export const baseAPI = axios.create({
+    // baseURL: import.meta.env.VITE_APP_API_BASE_URL,
     baseURL: "https://random-data-api.com/api/v2",
     headers: {
-        'ContentType':
-        'application/json',
+        'ContentType': 'application/json',
     },
 })
 
