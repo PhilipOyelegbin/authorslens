@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { baseAPI } from "../api/api";
-
+import axios from "axios";
 
 const initialState = {loading: false, blogs: [], error: ""}
 
 export const getLatestBlogs = createAsyncThunk("blogs/getLatestBlogs", async () => {
-    const resp = await baseAPI.get("/users?size=5");
+    const resp = await axios.get(import.meta.env.VITE_APP_LATEST_BLOG_ROUTE);
     return resp.data;
 })
 

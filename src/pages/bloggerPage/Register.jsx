@@ -15,13 +15,13 @@ const Register = () => {
 
     const formik = useFormik({
         initialValues: {
-            username: "", first_name: "", last_name: "", email: "", password: "", confirm_password: ""
+            first_name: "", last_name: "", pen_name: "", email: "", password: "", confirm_password: ""
         },
         validationSchema: regSchema,
         onSubmit: (value) => {
             dispatch(postUser(value))
             if(error) {
-                toast.error("")
+                toast.error("Unable to register, try again later!")
             } else {
                 formik.resetForm()
                 navigate("/login")
@@ -50,11 +50,6 @@ const Register = () => {
             <form onSubmit={formik.handleSubmit} autoComplete="off" className="p-5 w-full md:p-10 md:w-1/2">
                 <h3 className="text-center">Create an account</h3>
                 <div className="form-control">
-                    <label htmlFor="username">Username</label>
-                    <input id="username" placeholder="Enter username" {...formik.getFieldProps('username')}/>
-                    {(formik.touched.username && formik.errors.username) && <p className="text-red-500">{formik.errors.username}</p>}
-                </div>
-                <div className="form-control">
                     <label htmlFor="first_name">First Name</label>
                     <input id="first_name" placeholder="Enter first name" {...formik.getFieldProps('first_name')}/>
                     {(formik.touched.first_name && formik.errors.first_name) && <p className="text-red-500">{formik.errors.first_name}</p>}
@@ -63,6 +58,11 @@ const Register = () => {
                     <label htmlFor="last_name">Last Name</label>
                     <input id="last_name" placeholder="Enter last name" {...formik.getFieldProps('last_name')}/>
                     {(formik.touched.last_name && formik.errors.last_name) && <p className="text-red-500">{formik.errors.last_name}</p>}
+                </div>
+                <div className="form-control">
+                    <label htmlFor="pen_name">Pen name</label>
+                    <input id="pen_name" placeholder="Enter pen name" {...formik.getFieldProps('pen_name')}/>
+                    {(formik.touched.pen_name && formik.errors.pen_name) && <p className="text-red-500">{formik.errors.pen_name}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="email">Email</label>

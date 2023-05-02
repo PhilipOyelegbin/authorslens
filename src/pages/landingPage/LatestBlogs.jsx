@@ -23,8 +23,8 @@ const LatestBlogs = () => {
                 <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
                     <img className='rounded-t-2xl object-cover w-full h-80' src={blog.avatar || "cover-image"} loading="lazy" alt="cover_image" />
                     <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
-                        <h3 className='text-[#C31192]'>{blog.username || "Unknown"}</h3>
-                        <p className='my-3'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates facere quibusdam, nostrum dolorem necessitatibus cum explicabo quia doloremque, quae, at vel praesentium. Corrupti, ea commodi!</p>
+                        <h3 className='text-[#C31192]'>{blog.pen_name || "Unknown"}</h3>
+                        <p className='my-3'>{blog.description}</p>
                         <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link>
                     </figcaption>
                 </figure>))
