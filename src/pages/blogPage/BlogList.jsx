@@ -7,6 +7,8 @@ const BlogList = () => {
   const dispatch = useDispatch()
   const {loading, blogs, error} = useSelector(state => state.blogs)
 
+  console.log(blogs);
+
   useEffect(() => {
     dispatch(getBlogs())
   }, [])
@@ -17,9 +19,9 @@ const BlogList = () => {
       <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5'>
         {blogs && blogs?.map(blog => (
           <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
-            <img className='rounded-t-2xl object-cover w-full h-80' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
+            <img className='rounded-t-2xl object-fill w-full h-80' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
             <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
-              <h3 className='text-[#C31192]'>{blog.author || "Unknown"}</h3>
+              <h3 className='text-[#C31192]'>{blog.author.first_name  + " " + blog.author.last_name || "Unknown"}</h3>
               <p className='my-3'>{blog.content}</p>
               <Link to={`/blog/${blog.id}`} className='btn'>Read more</Link>
             </figcaption>

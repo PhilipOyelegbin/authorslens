@@ -9,8 +9,8 @@ const Nav = () => {
 
   const menuContent = [
     {id: 1, label: 'Home', link: '/'},
-    {id: 2, label: 'Blogs', link: '/blogs'},
-    {id: 3, label: 'Founders', link: 'founders'},
+    {id: 2, label: 'About Us', link: 'about-us'},
+    {id: 3, label: 'Blogs', link: 'blogs'},
     {id: 4, label: 'Write', link: 'write'},
   ];
 

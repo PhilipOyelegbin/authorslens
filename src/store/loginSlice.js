@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
+import { baseAPI } from "../api";
 
 const initialState = {loading: false, user: [], error: ""}
 
-export const getUser = createAsyncThunk("auth/getUser", async () => {
-    const resp = await axios.get(import.meta.env.VITE_APP_LOGIN_ROUTE, data);
+export const getUser = createAsyncThunk("auth/getUser", async (data) => {
+    const resp = await baseAPI.post("login", data);
     return resp.data
 })
 

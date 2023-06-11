@@ -2,6 +2,8 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa"
 import peter from '../../assets/peter.jpg';
 import philip from '../../assets/philip.jpg';
 import { Link } from "react-router-dom";
+import Hero from "./Hero";
+import { useEffect } from "react";
 
 const Founders = () => {
   const initiators = [
@@ -9,15 +11,22 @@ const Founders = () => {
     {avatar: peter, full_name: "Peter Oyelegbin", description: "Peter is a skilled Backend Engineer with experience building functional and secure Apps/APIs, and currently works as an IT Support at Alert MFB in Lagos, Nigeria. He graduated from Yaba College of Technology with a degree in Industrial Maintenance Engineering.", linkedin: "//linkedin.com/in/peteroyelegbin", facebook: "//m.facebook.com/peter.oyelegbin", twitter: "//twitter.com/peteroyelegbin" }
   ]
 
+  useEffect(() => {
+    document.title = "AuthorsLens: About Us"
+  }, [])
+
   return (
     <>
-      {/* hero section */}
-      <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/business-finance-employment-female-successful-entrepreneurs-concept-friendly-smiling-office-manager-greeting-new-coworker-businesswoman-welcome-clients-with-hand-wave-hold-laptop_1258-59122.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
-        <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
-          <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
-            <h2>MEET THE INITIATORS</h2>
-            <h4>A passion-driven journey of creativity, innovation, and making a difference!</h4>
-          </div>
+      <Hero/>
+
+      {/* about info */}
+      <section className="px-5 py-10 md:px-20 bg-[#13274f] text-slate-200 flex flex-col justify-between gap-3 md:flex-row">
+        <div>
+          <h5>WHO WE ARE</h5>
+        </div>
+        <div className="md:w-2/3">
+          <h4 className="text-[#C31192] mb-3">Authors Lens was founded to give new writers a platform to test their writing skills before going out publicly with their skillsets.</h4>
+          <p>We are a group of young, passionate and driven individuals who are passionate about creating</p>
         </div>
       </section>
 

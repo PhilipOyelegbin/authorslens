@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
+import { baseAPI } from "../api";
 
 const initialState = {loading: false, user: [], error: ""}
 
 export const postUser = createAsyncThunk("regUser/postUser", async (data) => {
-    const resp = await axios.get(import.meta.env.VITE_APP_REGISTER_ROUTE, data);
-
+    const resp = await baseAPI.post("/register", data);
     return resp.data
 })
 

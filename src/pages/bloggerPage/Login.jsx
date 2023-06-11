@@ -30,57 +30,46 @@ const Login = () => {
 
     useEffect(() => {
         dispatch(getUser())
-        document.title = "Cumandra - Login Page"
+        document.title = "AuthorsLens: Login"
     }, []);
 
   return (
-    <>
-        {/* hero section */}
-        <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/business-finance-employment-female-successful-entrepreneurs-concept-friendly-smiling-office-manager-greeting-new-coworker-businesswoman-welcome-clients-with-hand-wave-hold-laptop_1258-59122.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
-            <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
-                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
-                    <h2>WELCOME BACK</h2>
-                    <h4>Nice to see you again!</h4>
-                </div>
+    <section className='flex flex-row justify-between items-center px-5 my-10 md:px-20'>
+        <form onSubmit={formik.handleSubmit} autoComplete="off" className='w-full md:w-1/2'>
+            <h3 className='text-center'>Login to write a blog</h3>
+            <div className="form-control">
+                <label htmlFor="email">Email address</label>
+                <input id="email" placeholder="example@mail.com" {...formik.getFieldProps("email")}/>
+                {(formik.touched.email && formik.errors.email) && <p className='text-red-500'>{formik.errors.email}</p>}
             </div>
-        </section>
+            <div className="form-control">
+                <label htmlFor="password">Password</label>
+                <input type={show ? "text" : "password"} id="password" placeholder="xxxxxxxx" {...formik.getFieldProps("password")}/>
+                {(formik.touched.password && formik.errors.password) && <p className='text-red-500'>{formik.errors.password}</p>}
+            </div>
+            <div className='flex items-center gap-1 my-3'>
+                <input className='w-5 h-5' type="checkbox" name="show" id="show" onClick={() => setShow(prev => !prev)} />
+                <label htmlFor="show">Show password</label>
+            </div>
 
-        {/* login form section */}
-        <section className='flex flex-row justify-between items-center p-5'>
-            <form onSubmit={formik.handleSubmit} autoComplete="off" className='p-5 w-full md:p-10 md:w-1/2'>
-                <h3 className='text-center'>Login to write a blog</h3>
-                <div className="form-control">
-                    <label htmlFor="email">Email address</label>
-                    <input id="email" placeholder="example@mail.com" {...formik.getFieldProps("email")}/>
-                    {(formik.touched.email && formik.errors.email) && <p className='text-red-500'>{formik.errors.email}</p>}
-                </div>
-                <div className="form-control">
-                    <label htmlFor="password">Password</label>
-                    <input type={show ? "text" : "password"} id="password" placeholder="xxxxxxxx" {...formik.getFieldProps("password")}/>
-                    {(formik.touched.password && formik.errors.password) && <p className='text-red-500'>{formik.errors.password}</p>}
-                </div>
-                <div className='flex items-center gap-1 my-3'>
-                    <input className='w-5 h-5' type="checkbox" name="show" id="show" onClick={() => setShow(prev => !prev)} />
-                    <label htmlFor="show">Show password</label>
-                </div>
-
-                <button type='submit' className='btn my-3'>
+            <div className='flex flex-col justify-between gap-3 lg:flex-row'>
+                <button type='submit' className='btn'>
                     {loading ? "Loading..." : "Sign In"}
                 </button>
 
-                <p className='text-center mt-3'>
+                <p className='text-center'>
                     Don't have an account?
                     <Link className='text-[#69094e] font-bold ml-1' to='/register'>
                         Create one!
                     </Link>
                 </p>
-            </form>
-
-            <div className='hidden md:block md:w-1/2'>
-                <img src={signin} className='w-full h-full' alt="image" />
             </div>
-        </section>
-    </>
+        </form>
+
+        <div className='hidden md:block md:w-1/2'>
+            <img src={signin} className='w-full h-full' alt="image" />
+        </div>
+    </section>
   )
 }
 

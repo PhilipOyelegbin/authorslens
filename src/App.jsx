@@ -21,7 +21,7 @@ function App() {
       <Route path='/' element={<SharedLayout/>} errorElement={<Error/>}>
         <Route index element={<Home/>}/>
         <Route path='blogs' element={<Blog/>}/>
-        <Route path='founders' element={<Founders/>}/>
+        <Route path='about-us' element={<Founders/>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='register' element={<Register/>}/>
         <Route element={<ProtectedRoutes/>}>

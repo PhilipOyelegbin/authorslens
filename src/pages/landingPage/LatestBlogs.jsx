@@ -12,7 +12,7 @@ const LatestBlogs = () => {
     }, [])
 
   return (
-    <section id="latest-blogs" className='px-3 my-10 md:px-20'>
+    <section id="latest-blogs" className='px-5 my-10 md:px-20'>
         <div className="flex justify-between items-center gap-3">
             <h2>Latest Blog</h2>
             <Link to="/blogs" className="btn">View all</Link>

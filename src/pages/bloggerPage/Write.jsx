@@ -21,7 +21,7 @@ const Write = () => {
     }
 
     useEffect(() => {
-        document.title = 'Cumandra - Write a blog!';
+        document.title = 'AuthorsLens: Write a blog!';
     }, [])
 
   return (

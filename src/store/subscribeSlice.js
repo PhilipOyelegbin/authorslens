@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios";
+import { baseAPI } from "../api";
 
 const initialState = {loading: false, email: "", error: ""}
 
 export const postSubscriber = createAsyncThunk("subscribe/postSubscriber", async (data) => {
-    const resp = await axios.get(import.meta.env.VITE_APP_SUBSCRIBE_ROUTE, data);
+    const resp = await baseAPI.post("/susbscribe", data);
     return resp.data
 })
 

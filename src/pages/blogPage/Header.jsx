@@ -15,9 +15,10 @@ const Header = () => {
             <li className='hover:bg-[#13274f] hover:text-slate-300'>All</li>
             <li className='hover:bg-[#13274f] hover:text-slate-300'>Technology</li>
             <li className='hover:bg-[#13274f] hover:text-slate-300'>Lifestyle</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300'>Relationship</li>
           </ul>
         </div>
-        <input type="search" placeholder="Search for blog" className="w-1/2"/>
+        <input type="search" placeholder="Search for blog" className="w-1/2 py-1"/>
       </div>
     </header>
   )

@@ -30,25 +30,15 @@ const Register = () => {
     })
 
     useEffect(() => {
-      document.title = "Cumandra - Registration Page"
+      document.title = "AuthorsLens: Register"
     }, [])
 
   return (
     <>
-        {/* hero section */}
-        <section className="h-[80vh] bg-[url('https://img.freepik.com/free-photo/confident-brunette-girl-showing-team-members-great-link-gain-new-skills-pointing-fingers-down-inviting-join-courses-group-smiling-advertise-product-standing-white-background_176420-51452.jpg?size=626&ext=jpg&ga=GA1.2.405634466.1654584137')] bg-center bg-no-repeat bg-cover bg-fixed">
-            <div className='bg-black text-slate-300 bg-opacity-60 h-full flex flex-col justify-center items-center'>
-                <div className="w-5/6 flex flex-col justify-center items-center gap-5 text-center animate__animated animate__fadeInUp animate__slow">
-                    <h2>BECOME A MEMBER</h2>
-                    <h4>Get full access to post articles on the website.</h4>
-                </div>
-            </div>
-        </section>
-
-        {/* registration form section */}
-        <section className="flex flex-row justify-between items-center p-5">
-            <form onSubmit={formik.handleSubmit} autoComplete="off" className="p-5 w-full md:p-10 md:w-1/2">
-                <h3 className="text-center">Create an account</h3>
+        <section className="flex flex-row justify-between items-center px-5 my-10 md:px-20">
+            <form onSubmit={formik.handleSubmit} autoComplete="off" className="w-full md:w-1/2">
+                <h3 className="text-center">Become a member</h3>
+                <p>Get full access to post articles on the website.</p>
                 <div className="form-control">
                     <label htmlFor="first_name">First Name</label>
                     <input id="first_name" placeholder="Enter first name" {...formik.getFieldProps('first_name')}/>
@@ -89,16 +79,18 @@ const Register = () => {
                     <label htmlFor="show">Show password</label>
                 </div>
 
-                <button type="submit" className="btn my-3">
-                    {loading ? "Loading" : "Submit"}
-                </button>
+                <div className='flex flex-col justify-between gap-3 lg:flex-row'>
+                    <button type="submit" className="btn">
+                        {loading ? "Loading" : "Submit"}
+                    </button>
 
-                <p className='text-center mt-3'>
-                    Already have an account?
-                    <Link className='text-[#69094e] font-bold ml-1' to='/login'>
-                        Log in!
-                    </Link>
-                </p>
+                    <p className='text-center'>
+                        Already have an account?
+                        <Link className='text-[#69094e] font-bold ml-1' to='/login'>
+                            Log in!
+                        </Link>
+                    </p>
+                </div>
             </form>
 
             <div className="hidden md:block md:w-1/2">
