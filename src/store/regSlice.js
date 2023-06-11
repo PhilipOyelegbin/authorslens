@@ -4,7 +4,7 @@ import { baseAPI } from "../api";
 const initialState = {loading: false, user: [], error: ""}
 
 export const postUser = createAsyncThunk("regUser/postUser", async (data) => {
-    const resp = await baseAPI.post("/register", data);
+    const resp = await baseAPI.post("/accounts/signup", data);
     return resp.data
 })
 

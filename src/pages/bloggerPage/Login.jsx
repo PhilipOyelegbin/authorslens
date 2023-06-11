@@ -3,23 +3,23 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { getUser } from '../../store/loginSlice';
+import { logUser } from '../../store/loginSlice';
 import { loginSchema } from '../../utilities/validationShema';
 import signin from '../../assets/signin.png';
 
 const Login = () => {
     // a state for showing loading process
     const [show, setShow] = useState(false);
-    const {loading, user} = useSelector(state => state.auth)
+    const {loading, error} = useSelector(state => state.loginUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {email: '', password: ''},
         validationSchema: loginSchema,
-        onSubmit: (values) => {
-            const filteredUser = user.filter(obj => {return (obj.email == values.email && obj.password == values.password)})
-            if(!filteredUser) {
+        onSubmit: (value) => {
+            dispatch(logUser(value))
+            if(error !== "") {
                 toast.error("Email or password incorrect")
             } else {
                 formik.resetForm()
@@ -29,7 +29,6 @@ const Login = () => {
     })
 
     useEffect(() => {
-        dispatch(getUser())
         document.title = "AuthorsLens: Login"
     }, []);
 

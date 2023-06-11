@@ -15,16 +15,17 @@ const Register = () => {
 
     const formik = useFormik({
         initialValues: {
-            first_name: "", last_name: "", pen_name: "", email: "", password: "", confirm_password: ""
+            first_name: "", last_name: "", email: "", phone: "", password: "", confirm_password: ""
         },
         validationSchema: regSchema,
         onSubmit: (value) => {
+            console.log(value);
             dispatch(postUser(value))
-            if(error) {
+            if(error !== "") {
                 toast.error("Unable to register, try again later!")
             } else {
                 formik.resetForm()
-                navigate("/login")
+                // navigate("/login")
             }
         }
     })
@@ -50,14 +51,14 @@ const Register = () => {
                     {(formik.touched.last_name && formik.errors.last_name) && <p className="text-red-500">{formik.errors.last_name}</p>}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="pen_name">Pen name</label>
-                    <input id="pen_name" placeholder="Enter pen name" {...formik.getFieldProps('pen_name')}/>
-                    {(formik.touched.pen_name && formik.errors.pen_name) && <p className="text-red-500">{formik.errors.pen_name}</p>}
-                </div>
-                <div className="form-control">
                     <label htmlFor="email">Email</label>
                     <input id="email" placeholder="example@gmail.com" {...formik.getFieldProps('email')}/>
                     {(formik.touched.email && formik.errors.email) && <p className="text-red-500">{formik.errors.email}</p>}
+                </div>
+                <div className="form-control">
+                    <label htmlFor="phone">Phone</label>
+                    <input type="tel" id="phone" placeholder="+234xxxxxxxxxx" {...formik.getFieldProps('phone')}/>
+                    {(formik.touched.phone && formik.errors.phone) && <p className="text-red-500">{formik.errors.phone}</p>}
                 </div>
                 <div className="form-control">
                     <label htmlFor="password">Password</label>

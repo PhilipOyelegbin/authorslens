@@ -7,8 +7,6 @@ const BlogList = () => {
   const dispatch = useDispatch()
   const {loading, blogs, error} = useSelector(state => state.blogs)
 
-  console.log(blogs);
-
   useEffect(() => {
     dispatch(getBlogs())
   }, [])
