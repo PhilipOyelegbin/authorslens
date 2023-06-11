@@ -62,10 +62,6 @@
     @apply w-screen h-screen flex justify-center items-center bg-white;
   }
 
-  .home-hero {
-    @apply h-screen md:h-[70vh] text-slate-200 bg-[url("./homepage_bg.jpg")] bg-cover bg-no-repeat bg-center bg-fixed md:bg-bottom;
-  }
-
   .form-control {
     @apply flex flex-col my-5 w-full;
   }

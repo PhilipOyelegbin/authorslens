@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className='home-hero'>
+    <section className="h-screen md:h-[70vh] text-slate-200 bg-[url('./assets/homepage_bg.jpg')] bg-cover bg-no-repeat bg-center bg-fixed md:bg-bottom">
       <div className='bg-gray-800 bg-opacity-60 w-full h-full flex items-center'>
         <div className='px-5 md:px-20 lg:w-3/5 animate__animated animate__lightSpeedInLeft animate__slow'>
           <h2 className='my-5 lg:text-left'>UNLEASH YOUR INNER WRITER</h2>
