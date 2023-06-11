@@ -63,7 +63,7 @@
   }
 
   .home-hero {
-    @apply h-screen md:h-[70vh] text-slate-200 bg-[url("src/assets/homepage_bg.jpg")] bg-cover bg-no-repeat bg-center bg-fixed md:bg-bottom;
+    @apply h-screen md:h-[70vh] text-slate-200 bg-[url("./homepage_bg.jpg")] bg-cover bg-no-repeat bg-center bg-fixed md:bg-bottom;
   }
 
   .form-control {
