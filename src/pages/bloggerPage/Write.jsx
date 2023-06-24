@@ -1,28 +1,75 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import JoditEditor from 'jodit-react';
+import { postBlogs } from "../../store/blogSlice";
 import write from "../../assets/writer.png";
 
 const Write = () => {
-    // handling state for writer
     const [writer, setWriter] = useState({
-        coverimage: "", author: "", title: "", content: ""
+        cover_image: "", author: "", title: "", content: ""
     });
+    // const [writer, setWriter] = useState({
+    //     cover_image: "", author: "", title: "", content: ""
+    // });
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
+    const {loading, error} = useSelector(state => state.blogs)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const editor = useRef(null)
+    const config = useMemo(
+        () => ({
+            readonly: false,
+            placeholder: "Start typing..."
+        }),
+        []
+    )
+
+
+    // a function for handling form input changes
+    function handleChange(e) {
+        const {name, value, files} = e.target
+        setWriter({...writer, [name]: value || files[0]})
+    };
 
     // a function for handling form submission
-    function handlePublish() {
+    function handlePublish(e) {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("cover_image", writer.cover_image)
+        formData.append("author", writer.author)
+        formData.append("title", writer.title)
+        formData.append("content", writer.content)
+        dispatch(postBlogs(formData))
+        setHasSubmitted(true)
     };
 
     // a function for handling user logout action
     function handleLogout() {
         navigate('/login');
-        sessionStorage.removeItem('username');
+        sessionStorage.clear();
     }
 
     useEffect(() => {
         document.title = 'AuthorsLens: Write a blog!';
-    }, [])
+        if(hasSubmitted) {
+            setTimeout(() => {
+                if(!error) {
+                    toast.success("Published successfully")
+                    setWriter({
+                        cover_image: "", author: "", title: "", content: ""
+                    })
+                    navigate("/")
+                } else {
+                    toast.error("Unable to register, try again later!")
+                    setHasSubmitted(false)
+                }
+            }, 2000);
+        }
+    }, [error])
 
   return (
     <>
@@ -41,21 +88,32 @@ const Write = () => {
             <form onSubmit={handlePublish} encType='multipart/form-data' autoComplete="off" className='p-5 w-full md:p-10 md:w-1/2'>
                 <div className="form-control">
                     <label htmlFor="cover_image">Upload cover image</label>
-                    <input id="cover_image" accept="image/*"/>
+                    <input type="file" id="cover_image" name="cover_image" accept="image/*" value={writer.cover_image} onChange={handleChange} required/>
+                    {/* {(formik.touched.first_name && formik.errors.first_name) && <p className="text-red-500">{formik.errors.first_name}</p>} */}
                 </div>
                 <div className="form-control">
                     <label htmlFor="author">Author</label>
-                    <input id="author" placeholder="Enter author name"/>
+                    <input id="author" name="author" value={writer.author} onChange={handleChange} placeholder="Enter author's name" required/>
+                    {/* {(formik.touched.author && formik.errors.author) && <p className="text-red-500">{formik.errors.author}</p>} */}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="author">Title</label>
-                    <input id="title" placeholder="Enter article title"/>
+                    <label htmlFor="title">Title</label>
+                    <input id="title" placeholder="Enter article title" name="title" value={writer.title} onChange={handleChange} required/>
+                    {/* {(formik.touched.title && formik.errors.title) && <p className="text-red-500">{formik.errors.title}</p>} */}
                 </div>
                 <div className="form-control">
-                    <label htmlFor="author">Article</label>
-                    <textarea id="content" cols="30" rows="10" placeholder="Write your article here..."></textarea>
+                    <label htmlFor="article">Article</label>
+                    <JoditEditor
+                        ref={editor}
+                        value={writer.content}
+                        config={config}
+                        tabIndex={1}
+                        // onBlur={newContent => setWriter({...writer, content: newContent})}
+                        onChange={newContent => setWriter({...writer, content: newContent})}
+                    />
+                    {/* {(formik.touched.content && formik.errors.content) && <p className="text-red-500">{formik.errors.content}</p>} */}
                 </div>
-                <button type="submit" className="btn text-[#C31192] bg-slate-300 hover:text-slate-300 hover:bg-[#C31192]">Publish</button>
+                <button type="submit" className="btn text-[#C31192] bg-slate-300 hover:text-slate-300 hover:bg-[#C31192]">{loading ? "Loading" : "Publish"}</button>
                 <button className='btn text-slate-300 bg-slate-700 hover:text-slate-700 hover:bg-gray-300 ml-5' onClick={handleLogout}>Log Out</button>
             </form>
 

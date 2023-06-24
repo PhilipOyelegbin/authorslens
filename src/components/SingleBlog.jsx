@@ -19,10 +19,10 @@ const SingleBlog = () => {
   return (
     <section>
       {loading ? <h3>Loading...</h3> : error ? <h3>Unable to get blog</h3> : filteredBlog && <article className='p-5 md:px-20'>
-        <img src={filteredBlog[0]?.avatar} loading="lazy" className='h-[400px] w-full object-fill rounded-2xl' alt="" />
+        <img src={filteredBlog[0]?.cover_image} loading="lazy" className='h-[400px] w-full object-fill rounded-2xl' alt="" />
         <h2 className='text-center mt-3'>{filteredBlog[0]?.title}</h2>
         <div className='flex items-center justify-between my-3'>
-          <h4>{filteredBlog[0]?.first_name} {filteredBlog[0]?.last_name}</h4>
+          <h4>{filteredBlog[0]?.author.first_name} {filteredBlog[0]?.author.last_name}</h4>
           <div className='flex items-center text-2xl gap-3 md:gap-5'>
             <FaPen className='text-blue-500'/>
             <FaTrash className='text-red-500'/>

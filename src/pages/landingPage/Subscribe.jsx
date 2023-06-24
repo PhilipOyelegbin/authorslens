@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -5,6 +6,7 @@ import { postSubscriber } from "../../store/subscribeSlice";
 import { subscribeSchema } from "../../utilities/validationShema";
 
 const Subscribe = () => {
+  const [hasSubmitted, setHasSubmitted] = useState(false)
   const {loading, error} = useSelector(state => state.subscribe)
   const dispatch = useDispatch();
 
@@ -13,13 +15,22 @@ const Subscribe = () => {
     validationSchema: subscribeSchema,
     onSubmit: (values) => {
       dispatch(postSubscriber(values))
-      if(error) {
-        toast.error(error)
-      } else {
-        toast.success("Successful")
-      }
+      setHasSubmitted(true)
     }
   })
+
+  useEffect(() => {
+    if(hasSubmitted) {
+      setTimeout(() => {
+        if(!error) {
+          toast.success("Successful")
+          setHasSubmitted(false)
+        } else {
+          toast.error(error)
+        }
+      }, 2000);
+    }
+  }, [error])
 
   return (
     <section className='p-5 md:px-20 bg-[#13274f]'>

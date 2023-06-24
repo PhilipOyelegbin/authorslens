@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { logUser } from '../../store/loginSlice';
+import { loginUser } from '../../store/authSlice';
 import { loginSchema } from '../../utilities/validationShema';
 import signin from '../../assets/signin.png';
 
 const Login = () => {
-    // a state for showing loading process
     const [show, setShow] = useState(false);
-    const {loading, error} = useSelector(state => state.loginUser)
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+    const {loading, error} = useSelector(state => state.authUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -18,19 +18,27 @@ const Login = () => {
         initialValues: {email: '', password: ''},
         validationSchema: loginSchema,
         onSubmit: (value) => {
-            dispatch(logUser(value))
-            if(error !== "") {
-                toast.error("Email or password incorrect")
-            } else {
-                formik.resetForm()
-                navigate("/write")
-            }
+            dispatch(loginUser(value))
+            setHasSubmitted(true)
         }
     })
 
     useEffect(() => {
         document.title = "AuthorsLens: Login"
-    }, []);
+        if(hasSubmitted) {
+            setTimeout(() => {
+                if(!error) {
+                    toast.success("Sent successfully")
+                    formik.resetForm()
+                    navigate("/auth")
+                    setHasSubmitted(false)
+                } else {
+                    toast.error("Email or password incorrect")
+                    setHasSubmitted(false)
+                }
+            }, 2000);
+        }
+    }, [error]);
 
   return (
     <section className='flex flex-row justify-between items-center px-5 my-10 md:px-20'>

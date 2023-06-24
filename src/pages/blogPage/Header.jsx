@@ -1,8 +1,21 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
 
 const Header = () => {
   const [toggleFilter, setToggleFilter] = useState(false)
+  const [searchInput, setSearchInput] = useState("")
+  const [searchResult, setSearchResult] = useState([])
+
+  const {data} = useSelector(state => state.searchBlog)
+
+  function handleSearch(e) {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+    const filteredSearch = data?.filter(searchedItem => searchedItem.category == searchInput)
+    setSearchResult(filteredSearch)
+    openModal()
+  }
 
   return (
     <header className="text-center py-5">
@@ -18,7 +31,8 @@ const Header = () => {
             <li className='hover:bg-[#13274f] hover:text-slate-300'>Relationship</li>
           </ul>
         </div>
-        <input type="search" placeholder="Search for blog" className="w-1/2 py-1"/>
+
+        <input type="search" name="searchInput" id="searchInput" placeholder="Search for blog" className="w-1/2 py-1" value={searchInput} onChange={handleSearch}/>
       </div>
     </header>
   )

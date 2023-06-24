@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { baseAPI } from "../api";
 
-const initialState = {loading: false, email: "", error: ""}
+const initialState = {loading: false, subscriber: "", error: ""}
 
 export const postSubscriber = createAsyncThunk("subscribe/postSubscriber", async (data) => {
     const resp = await baseAPI.post("/susbscribe", data);
@@ -14,12 +14,17 @@ const subscribeSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(postSubscriber.pending, state => state.loading = true),
         builder.addCase(postSubscriber.fulfilled, (state, action) => {
-            state.loading = false,
-            state.email = action.payload
+            state.loading = false;
+            if(action.error?.message) {
+                state.error = action.error.message
+            } else {
+                state.error = ""
+                state.subscriber = action.payload
+            }
         }),
         builder.addCase(postSubscriber.rejected, (state, action) => {
             state.loading = false,
-            state.email = "",
+            state.subscriber = "",
             state.error = action.error.message
         })
     }

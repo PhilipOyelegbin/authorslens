@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/landingPage/Home'));
 const Founders = lazy(() => import('./pages/aboutPage/Founders'));
 const Login = lazy(() => import('./pages/bloggerPage/Login'));
 const Register = lazy(() => import('./pages/bloggerPage/Register'));
+const Auth = lazy(() => import('./pages/bloggerPage/Auth'));
 const Write = lazy(() => import('./pages/bloggerPage/Write'));
 const Error = lazy(() => import('./components/Error'));
 const Blog = lazy(() => import('./pages/blogPage/Blog'));
@@ -22,8 +23,9 @@ function App() {
         <Route index element={<Home/>}/>
         <Route path='blogs' element={<Blog/>}/>
         <Route path='about-us' element={<Founders/>}/>
-        <Route path='login' element={<Login/>}/>
         <Route path='register' element={<Register/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='auth' element={<Auth/>}/>
         <Route element={<ProtectedRoutes/>}>
           <Route path='write' element={<Write/>}/>
         </Route>
@@ -35,7 +37,7 @@ function App() {
   return (
     <Suspense fallback={<Loader/>}>
       <RouterProvider router={router}/>
-      <ToastContainer position='top-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer position='top-right' autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </Suspense>
   )
 }

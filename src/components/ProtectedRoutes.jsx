@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoutes = () => {
-    const username = sessionStorage.getItem('username');
+  const email = sessionStorage.getItem('email');
+  console.log(email);
 
-  return username ? <Outlet/> : <Navigate to='/login'/>;
+  return email ? <Outlet/> : <Navigate to='/auth'/>;
 }
 
 export default ProtectedRoutes;
