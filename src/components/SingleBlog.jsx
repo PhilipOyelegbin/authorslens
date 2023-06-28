@@ -28,10 +28,7 @@ const SingleBlog = () => {
             <FaTrash className='text-red-500'/>
           </div>
         </div>
-        <p className='text-justify first-letter:text-2xl first-letter:pl-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, laboriosam dolorum voluptas et mollitia est consequuntur aspernatur, molestias vero quasi doloremque consectetur voluptatum totam amet. Cum deserunt est facilis aspernatur! Perferendis soluta non, asperiores laudantium quae voluptatum cupiditate aperiam exercitationem odio assumenda magni itaque excepturi dolores, sit libero enim doloribus!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, laboriosam dolorum voluptas et mollitia est consequuntur aspernatur, molestias vero quasi doloremque consectetur voluptatum totam amet. Cum deserunt est facilis aspernatur! Perferendis soluta non, asperiores laudantium quae voluptatum cupiditate aperiam exercitationem odio assumenda magni itaque excepturi dolores, sit libero enim doloribus!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, laboriosam dolorum voluptas et mollitia est consequuntur aspernatur, molestias vero quasi doloremque consectetur voluptatum totam amet. Cum deserunt est facilis aspernatur! Perferendis soluta non, asperiores laudantium quae voluptatum cupiditate aperiam exercitationem odio assumenda magni itaque excepturi dolores, sit libero enim doloribus!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, laboriosam dolorum voluptas et mollitia est consequuntur aspernatur, molestias vero quasi doloremque consectetur voluptatum totam amet. Cum deserunt est facilis aspernatur! Perferendis soluta non, asperiores laudantium quae voluptatum cupiditate aperiam exercitationem odio assumenda magni itaque excepturi dolores, sit libero enim doloribus!</p>
+        <p className='text-justify first-letter:text-2xl first-letter:pl-10' dangerouslySetInnerHTML={{__html: filteredBlog[0]?.content}}></p>
         <div className='flex items-center justify-between my-3'>
           <h6>{filteredBlog[0]?.createdAt}</h6>
           <h6>{filteredBlog[0]?.updatedAt}</h6>

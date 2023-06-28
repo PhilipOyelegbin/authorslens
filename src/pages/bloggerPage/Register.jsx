@@ -10,7 +10,7 @@ import signup from '../../assets/signup.png';
 const Register = () => {
     const [show, setShow] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false)
-    const {loading, error} = useSelector(state => state.authUser);
+    const {loading, regUser} = useSelector(state => state.authUser);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const Register = () => {
       document.title = "AuthorsLens: Register"
       if(hasSubmitted) {
         setTimeout(() => {
-            if(!error) {
+            if(regUser === 200) {
                 toast.success("Sent successfully")
                 formik.resetForm()
                 navigate("/login")
@@ -40,7 +40,7 @@ const Register = () => {
             }
         }, 2000);
       }
-    }, [error])
+    }, [regUser])
 
   return (
     <section className="flex flex-row justify-between items-center px-5 my-10 md:px-20">

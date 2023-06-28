@@ -12,7 +12,7 @@ export const getBlogs = createAsyncThunk("blog/getBlogs", async () => {
 // post blog request
 export const postBlogs = createAsyncThunk("blog/postBlogs", async (data) => {
     const resp = await baseAPI.post("/blogs", data);
-    return resp.data;
+    return resp.status;
 })
 
 // get latest blogs request

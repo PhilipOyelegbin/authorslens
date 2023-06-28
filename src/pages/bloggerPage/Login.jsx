@@ -10,7 +10,7 @@ import signin from '../../assets/signin.png';
 const Login = () => {
     const [show, setShow] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false)
-    const {loading, error} = useSelector(state => state.authUser)
+    const {loading, logUser} = useSelector(state => state.authUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -27,7 +27,7 @@ const Login = () => {
         document.title = "AuthorsLens: Login"
         if(hasSubmitted) {
             setTimeout(() => {
-                if(!error) {
+                if(logUser === 200) {
                     toast.success("Sent successfully")
                     formik.resetForm()
                     navigate("/auth")
@@ -38,7 +38,7 @@ const Login = () => {
                 }
             }, 2000);
         }
-    }, [error]);
+    }, [logUser]);
 
   return (
     <section className='flex flex-row justify-between items-center px-5 my-10 md:px-20'>
