@@ -11,7 +11,7 @@ const Nav = () => {
     {id: 1, label: 'Home', link: '/'},
     {id: 2, label: 'About Us', link: 'about-us'},
     {id: 3, label: 'Blogs', link: 'blogs'},
-    {id: 4, label: 'Login', link: 'login'},
+    {id: 4, label: 'Write', link: 'write'},
   ];
 
   show ? document.getElementById("root").classList.add("fixed") : document.getElementById("root").classList.remove("fixed");
@@ -36,7 +36,7 @@ const Nav = () => {
   }, [])
 
   return (
-    <header className={`flex justify-between items-center shadow-sm shadow-slate-500 w-screen text-slate-200 p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-[#13274f] ${!controlHeader && "-md:translate-y-48"}`}>
+    <header className={`flex justify-between items-center shadow-sm shadow-slate-500 w-screen md:w-full text-slate-200 p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-[#13274f] ${!controlHeader && "-md:translate-y-48"}`}>
       <img src={logo} className='w-10' alt="logo" />
 
       <button className="text-4xl cursor-pointer md:hidden block z-20" onClick={handleMenuContent}>

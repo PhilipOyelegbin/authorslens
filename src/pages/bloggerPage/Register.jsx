@@ -16,7 +16,7 @@ const Register = () => {
 
     const formik = useFormik({
         initialValues: {
-            first_name: "", last_name: "", email: "", password: ""
+            first_name: "", last_name: "", email: "", password: "", re_password: ""
         },
         validationSchema: regSchema,
         onSubmit: (value) => {
@@ -64,13 +64,14 @@ const Register = () => {
             </div>
             <div className="form-control">
                 <label htmlFor="password">Password</label>
-                <input type={show ? "text" : "password"} id="password" {...formik.getFieldProps('password')}/>
+                <input type={show ? "text" : "password"} id="password" placeholder="XXXXXXXX" {...formik.getFieldProps('password')}/>
                 {(formik.touched.password && formik.errors.password) && <p className="text-red-500">{formik.errors.password}</p>}
             </div>
-            {/* <div className='flex items-center gap-1 my-3'>
-                <input className='w-auto' type="checkbox"/>
-                <label htmlFor="terms">Accept terms and conditions</label>
-            </div> */}
+            <div className="form-control">
+                <label htmlFor="re_password">Confirm Password</label>
+                <input type={show ? "text" : "password"} id="re_password" placeholder="XXXXXXXX" {...formik.getFieldProps('re_password')}/>
+                {(formik.touched.re_password && formik.errors.re_password) && <p className="text-red-500">{formik.errors.re_password}</p>}
+            </div>
 
             <div className='flex items-center mb-3 gap-2'>
                 <input className='w-5 h-5' type="checkbox" name="show" id="show" onClick={() => setShow(prev => !prev)} />

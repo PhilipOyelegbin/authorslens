@@ -5,20 +5,20 @@ const initialState = {loading: false, regUser: [], logUser: [], token: [], error
 
 // -----------registration request--------------------------
 export const registerUser = createAsyncThunk('authentication/registerUser', async (data) => {
-    const resp = await baseAPI.post("/accounts/signup", data);
+    const resp = await baseAPI.post("/users/", data);
     return resp.status;
 })
 
 // -----------login request--------------------------
 export const loginUser = createAsyncThunk('authentication/loginUser', async (data) => {
-    const resp = await baseAPI.post("/accounts/login", data);
+    const resp = await baseAPI.post("/login", data);
     return resp.status;
 })
 
 // -----------token validation request--------------------------
 export const authenticateUser = createAsyncThunk('authentication/authenticateUser', async (data) => {
-    const resp = await baseAPI.post("/accounts/auth-token", data);
-    return resp.status;
+    const resp = await baseAPI.post("/token/verify", data);
+    return resp;
 })
 
 const authSlice = createSlice({

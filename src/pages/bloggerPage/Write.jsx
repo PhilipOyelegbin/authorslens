@@ -7,14 +7,13 @@ import { postBlogs } from "../../store/blogSlice";
 
 const Write = () => {
     const [writer, setWriter] = useState({
-        cover_image: "", author: "", title: "", content: ""
+        author: sessionStorage.getItem("user"), title: "", content: ""
     });
-    // const [writer, setWriter] = useState({
-    //     cover_image: "", author: "", title: "", content: ""
-    // });
+    const [image, setImage] = useState("")
+
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    const {loading, create} = useSelector(state => state.blogs)
+    const {loading, create, error} = useSelector(state => state.blogs)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,18 +29,19 @@ const Write = () => {
 
     // a function for handling form input changes
     function handleChange(e) {
-        const {name, value, files} = e.target
-        setWriter({...writer, [name]: value || files[0]})
+        const {name, value} = e.target
+        setWriter({...writer, [name]: value})
     };
 
     // a function for handling form submission
     function handlePublish(e) {
-        e.preventDefault()
         const formData = new FormData()
-        formData.append("cover_image", writer.cover_image)
+        formData.append("cover_image", image)
         formData.append("author", writer.author)
         formData.append("title", writer.title)
         formData.append("content", writer.content)
+
+        e.preventDefault()
         dispatch(postBlogs(formData))
         setHasSubmitted(true)
     };
@@ -52,23 +52,24 @@ const Write = () => {
         sessionStorage.clear();
     }
 
+    console.log(error);
+    console.log(create);
     useEffect(() => {
         document.title = 'AuthorsLens: Write a blog!';
         if(hasSubmitted) {
             setTimeout(() => {
-                if(create === 200) {
+                if(create.status === 200) {
                     toast.success("Published successfully")
-                    setWriter({
-                        cover_image: "", author: "", title: "", content: ""
-                    })
+                    setWriter({author: "", title: "", content: ""})
+                    setImage("")
                     navigate("/")
                 } else {
-                    toast.error("Unable to register, try again later!")
+                    toast.error("Unable to publish, try again later!")
                     setHasSubmitted(false)
                 }
             }, 2000);
         }
-    }, [create])
+    }, [create.status])
 
   return (
     <>
@@ -88,22 +89,15 @@ const Write = () => {
                 <div className="flex flex-col lg:flex-row lg:items-end lg:gap-10">
                     <div className="form-control">
                         <label htmlFor="cover_image">Upload cover image</label>
-                        <input type="file" id="cover_image" name="cover_image" accept="image/*" value={writer.cover_image} onChange={handleChange} required/>
-                        {/* {(formik.touched.first_name && formik.errors.first_name) && <p className="text-red-500">{formik.errors.first_name}</p>} */}
+                        <input type="file" id="cover_image" name="cover_image" accept="image/*" onChange={e => setImage(e.target.files[0])} required/>
                     </div>
                     <div className="form-control">
-                        <label htmlFor="author">Author</label>
-                        <input id="author" name="author" value={writer.author} onChange={handleChange} placeholder="Enter author's name" required/>
-                        {/* {(formik.touched.author && formik.errors.author) && <p className="text-red-500">{formik.errors.author}</p>} */}
+                        <label htmlFor="title">Title</label>
+                        <input id="title" placeholder="Enter article title" name="title" value={writer.title} onChange={handleChange} required/>
                     </div>
                 </div>
                 <div className="form-control">
-                    <label htmlFor="title">Title</label>
-                    <input id="title" placeholder="Enter article title" name="title" value={writer.title} onChange={handleChange} required/>
-                    {/* {(formik.touched.title && formik.errors.title) && <p className="text-red-500">{formik.errors.title}</p>} */}
-                </div>
-                <div className="form-control">
-                    <label htmlFor="article">Article</label>
+                    <label htmlFor="content">Article</label>
                     <JoditEditor
                         ref={editor}
                         value={writer.content}
@@ -112,7 +106,6 @@ const Write = () => {
                         // onBlur={newContent => setWriter({...writer, content: newContent})}
                         onChange={newContent => setWriter({...writer, content: newContent})}
                     />
-                    {/* {(formik.touched.content && formik.errors.content) && <p className="text-red-500">{formik.errors.content}</p>} */}
                 </div>
                 <button type="submit" className="btn text-[#C31192] bg-slate-300 hover:text-slate-300 hover:bg-[#C31192]">{loading ? "Loading" : "Publish"}</button>
                 <button className='btn text-slate-300 bg-slate-700 hover:text-slate-700 hover:bg-gray-300 ml-5' onClick={handleLogout}>Log Out</button>

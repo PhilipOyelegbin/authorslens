@@ -1,0 +1,52 @@
+/* smaller screen slider starts here */
+.slider__container {
+  padding: 40px 20px;
+  background: #EEEEEE;
+  border-radius: 60px 0 60px 0;
+}
+
+.slider__content {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  overflow: auto;
+  padding: 8px 0;
+}
+
+.slider__content::-webkit-scrollbar {
+  display:none;
+}
+
+.slider__arrow {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.arrow__btn {
+  cursor: pointer;
+  font-size: 32px;
+  font-weight: 500;
+  transition: all ease-in-out 300ms;
+}
+
+.arrow__btn:hover{
+  opacity: 0.6;
+}
+/* smaller screen slider ends here */
+
+
+@media (min-width: 768px) {
+  /* larger screen slider starts here */
+  .slider__container {
+    padding: 40px 80px;
+    border-radius: 120px 0 120px 0;
+  }
+
+  .slider__content {
+    gap: 16px;
+    padding: 16px;
+  }
+  /* larger screen slider ends here */
+}

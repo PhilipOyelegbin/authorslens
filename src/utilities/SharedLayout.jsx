@@ -1,6 +1,6 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
-import Footer from './Footer';
-import Nav from './Nav';
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 const SharedLayout = () => {
   return (

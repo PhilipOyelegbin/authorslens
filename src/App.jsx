@@ -2,9 +2,11 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProtectedRoutes from './utilities/ProtectedRoutes';
+import SharedLayout from './utilities/SharedLayout';
 import Loader from './components/Loader';
-import ProtectedRoutes from './components/ProtectedRoutes';
-import SharedLayout from './components/SharedLayout';
+import PrivateRoute from './utilities/PrivateRoute';
+
 
 const Home = lazy(() => import('./pages/landingPage/Home'));
 const Founders = lazy(() => import('./pages/aboutPage/Founders'));
@@ -29,6 +31,9 @@ function App() {
         <Route element={<ProtectedRoutes/>}>
           <Route path='write' element={<Write/>}/>
         </Route>
+        {/* <Route element={<PrivateRoute/>}>
+          <Route path="write" element={<Write/>}/>
+        </Route> */}
         <Route path='blog/:id' element={<SingleBlog/>}/>
       </Route>
     )

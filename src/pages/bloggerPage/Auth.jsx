@@ -14,12 +14,11 @@ const Auth = () => {
     const navigate = useNavigate()
 
     const formik = useFormik({
-        initialValues: {email: "", otp_token: ""},
+        initialValues: {token: ""},
         validationSchema: authSchema,
         onSubmit: (value) => {
             dispatch(authenticateUser(value))
             setHasSubmitted(true)
-            sessionStorage.setItem("email", value.email)
         }
     })
 
@@ -27,8 +26,10 @@ const Auth = () => {
         document.title = "AuthorsLens: Authentication"
         if(hasSubmitted) {
             setTimeout(() => {
-                if(token === 200) {
+                if(token.status === 200) {
                     toast.success("Sent successfully")
+                    sessionStorage.setItem("token", token?.data.token)
+                    sessionStorage.setItem("user", token?.data.user)
                     formik.resetForm()
                     navigate("/write")
                     setHasSubmitted(false)
@@ -38,21 +39,16 @@ const Auth = () => {
                 }
             }, 2000);
         }
-    }, [token]);
+    }, [token.status]);
 
   return (
     <section className='flex flex-row justify-between items-center px-5 my-10 md:px-20'>
         <form onSubmit={formik.handleSubmit} autoComplete="off" className="w-full md:w-1/2">
             <h3 className='text-center'>Token authentication</h3>
             <div className="form-control">
-                <label htmlFor="email">Email address</label>
-                <input id="email" placeholder="example@mail.com" {...formik.getFieldProps('email')}/>
-                {(formik.touched.email && formik.errors.email) && <p className="text-red-500">{formik.errors.email}</p>}
-            </div>
-            <div className="form-control">
-                <label htmlFor="otp_token">Token</label>
-                <input id="otp_token" placeholder="Check your email for login token" {...formik.getFieldProps('otp_token')}/>
-                {(formik.touched.otp_token && formik.errors.otp_token) && <p className="text-red-500">{formik.errors.otp_token}</p>}
+                <label htmlFor="token">Token</label>
+                <input id="token" placeholder="Check your email for login token" {...formik.getFieldProps('token')}/>
+                {(formik.touched.token && formik.errors.token) && <p className="text-red-500">{formik.errors.token}</p>}
             </div>
             <button type="submit" className="btn">
                 {loading ? "Loading" : "Submit"}

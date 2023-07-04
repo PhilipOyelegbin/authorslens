@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { baseAPI } from "../api";
 
 const initialState = {loading: false, blogs: [], create: [], latest_blogs: [], error: ""}
@@ -11,8 +12,14 @@ export const getBlogs = createAsyncThunk("blog/getBlogs", async () => {
 
 // post blog request
 export const postBlogs = createAsyncThunk("blog/postBlogs", async (data) => {
-    const resp = await baseAPI.post("/blogs", data);
-    return resp.status;
+    const resp = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/blogs`, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+        },
+    })
+    console.log(resp.data);
+    return resp;
 })
 
 // get latest blogs request
@@ -39,12 +46,17 @@ const blogSlice = createSlice({
         // ------------------post blog--------------------
         builder.addCase(postBlogs.pending, (state => {state.loading = true})),
         builder.addCase(postBlogs.fulfilled, (state, action) => {
-            state.loading = false,
-            state.blogs = action.payload
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.create = action.payload
+            } else {
+                state.error = action.error.message
+            }
         }),
         builder.addCase(postBlogs.rejected, (state, action) => {
             state.loading = false,
-            state.blogs = [],
+            state.create = [],
             state.error = action.error.message
         }),
         // --------------------latest blogs---------------------
