@@ -7,7 +7,7 @@ import { postBlogs } from "../../store/blogSlice";
 
 const Write = () => {
     const [writer, setWriter] = useState({
-        author: sessionStorage.getItem("user"), title: "", content: ""
+        author_id: sessionStorage.getItem("user"), title: "", content: ""
     });
     const [image, setImage] = useState("")
 
@@ -37,7 +37,7 @@ const Write = () => {
     function handlePublish(e) {
         const formData = new FormData()
         formData.append("cover_image", image)
-        formData.append("author", writer.author)
+        formData.append("author_id", writer.author_id)
         formData.append("title", writer.title)
         formData.append("content", writer.content)
 
@@ -60,7 +60,7 @@ const Write = () => {
             setTimeout(() => {
                 if(create.status === 200) {
                     toast.success("Published successfully")
-                    setWriter({author: "", title: "", content: ""})
+                    setWriter({author_id: "", title: "", content: ""})
                     setImage("")
                     navigate("/")
                 } else {
