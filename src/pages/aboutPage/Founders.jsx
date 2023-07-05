@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const Founders = () => {
   const initiators = [
     {avatar: philip, full_name: "Philip Oyelegbin", description: "Philip is a Frontend Engineer who currently works as a Customer Support Representative at WhoGoHost Limited based in Lagos, Nigeria. He graduated from Yaba College of Technology with a degree in Industrial Maintenance Engineering. He is passionate about creating digital solutions for SMEs.", linkedin: "//linkedin.com/in/philipoyelegbin", facebook: "//m.facebook.com/philip.oyelegbin", twitter: "//twitter.com/oyelegbinphilip" },
-    {avatar: peter, full_name: "Peter Oyelegbin", description: "Peter is a skilled Backend Engineer with experience building functional and secure Apps/APIs, and currently works as an IT Support at Alert MFB in Lagos, Nigeria. He graduated from Yaba College of Technology with a degree in Industrial Maintenance Engineering.", linkedin: "//linkedin.com/in/peteroyelegbin", facebook: "//m.facebook.com/peter.oyelegbin", twitter: "//twitter.com/peteroyelegbin" }
+    {avatar: peter, full_name: "Peter Oyelegbin", description: "Peter is a skilled Backend Engineer with experience building functional and secure Apps/APIs, and currently works as an IT Support at Alert Micro Finance Bank in Lagos, Nigeria. He graduated from Yaba College of Technology with a degree in Industrial Maintenance Engineering.", linkedin: "//linkedin.com/in/peteroyelegbin", facebook: "//m.facebook.com/peter.oyelegbin", twitter: "//twitter.com/peteroyelegbin" }
   ]
 
   useEffect(() => {

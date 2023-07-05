@@ -52,13 +52,11 @@ const Write = () => {
         sessionStorage.clear();
     }
 
-    console.log(error);
-    console.log(create);
     useEffect(() => {
         document.title = 'AuthorsLens: Write a blog!';
         if(hasSubmitted) {
             setTimeout(() => {
-                if(create.status === 200) {
+                if(create.status === 201) {
                     toast.success("Published successfully")
                     setWriter({author_id: "", title: "", content: ""})
                     setImage("")
