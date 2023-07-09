@@ -18,7 +18,6 @@ export const postBlogs = createAsyncThunk("blog/postBlogs", async (data) => {
             Authorization: `Token ${sessionStorage.getItem("token")}`,
         },
     })
-    console.log(resp.data);
     return resp;
 })
 

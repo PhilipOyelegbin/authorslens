@@ -94,10 +94,10 @@ const Write = () => {
                         <label htmlFor="category">Category</label>
                         <select name="category" id="category" onChange={handleChange}>
                             <option value="">[Select a category]</option>
-                            <option value="technology">Technology</option>
-                            <option value="lifestyle">Lifestyle</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Lifestyle">Lifestyle</option>
                             <option value="Relationship">Relationship</option>
-                            <option value="others">Others</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                 </div>
