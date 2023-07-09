@@ -51,7 +51,7 @@ export const getLifestyleBlogs = createAsyncThunk("blog/getLifestyleBlogs", asyn
 // get by others category blogs request
 export const getOtherBlogs = createAsyncThunk("blog/getOtherBlogs", async () => {
     const resp = await baseAPI.get("/blogs");
-    const filterOthers = resp.data?.filter(list => list.category !== ["Technology", "Lifestyle", "Relationship"])
+    const filterOthers = resp.data?.filter(list => list.category === "Others")
     return filterOthers;
 })
 

@@ -34,14 +34,14 @@ const BlogList = () => {
     <section className='p-5 md:px-20'>
       {loading ? <h4 className="text-center my-5">Loading...</h4> : error ? <h4 className="text-center my-5">Unable to load blogs</h4> : currentBlogs.length <= 0 && <h4 className="text-center my-5">No result found</h4>}
 
-      <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5'>
+      <div className='grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'>
         {currentBlogs && currentBlogs?.map(blog => (
-          <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
-            <img className='rounded-t-2xl object-fill w-full h-56' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
-            <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
+          <figure className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-translate-y-2' key={blog.id}>
+            <img className='w-full h-56 object-fill rounded-t-2xl' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
+            <figcaption className='p-3'>
               <h4>{blog.title || "Unknown"}</h4>
               <h6 className='text-[#C31192]'>{blog.author.first_name  + " " + blog.author.last_name || "Unknown"}</h6>
-              <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>
+              <p className='my-3 line-clamp-4' dangerouslySetInnerHTML={{__html: blog.content}}></p>
               <Link to={`/blog/${blog.id}`} className='btn'>Read more</Link>
             </figcaption>
           </figure>
@@ -50,7 +50,7 @@ const BlogList = () => {
 
       <ul className="flex flex-wrap justify-center items-center gap-1 w-fit mx-auto mt-3">
         {pageNumbers.map(number => (
-          <li key={number} role="tab" className="px-3 py-2 m-0 bg-[#cf6eb3] text-slate-200 ease-in-out duration-300 cursor-pointer hover:bg-[#C31192] hover:animate-pulse rounded-full" onClick={() => paginate(number)}>{number}</li>
+          <li key={number} className="px-3 py-2 m-0 bg-[#cf6eb3] text-slate-200 ease-in-out duration-300 cursor-pointer hover:bg-[#C31192] hover:animate-pulse rounded-full" onClick={() => paginate(number)}>{number}</li>
         ))}
       </ul>
     </section>

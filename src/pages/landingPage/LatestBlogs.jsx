@@ -20,9 +20,9 @@ const LatestBlogs = () => {
         {loading ? <h4 className="text-center my-5">Loading...</h4> : error && <h4 className="text-center my-5">Unable to load blogs</h4>}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5'>
             {latest_blogs && latest_blogs?.map(blog => (
-                <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
-                    <img className='rounded-t-2xl object-fill w-full h-56' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
-                    <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
+                <figure className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-translate-y-2' key={blog.id}>
+                    <img className='w-full h-56 object-fill rounded-t-2xl' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
+                    <figcaption className='p-3'>
                         <h4>{blog.title || "Unknown"}</h4>
                         <h6 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h6>
                         <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>

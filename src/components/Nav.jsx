@@ -37,7 +37,7 @@ const Nav = () => {
 
   return (
     <header className={`flex justify-between items-center shadow-sm shadow-slate-500 w-screen md:w-full text-[#13274f] p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-slate-200 ${!controlHeader && "-md:translate-y-48"}`}>
-      <img src={logo} className='w-10' alt="logo" />
+      <NavLink to="/"><img src={logo} className='w-10' alt="logo" /></NavLink>
 
       <button className="text-4xl cursor-pointer md:hidden block z-20" onClick={handleMenuContent}>
         <FaBars className={`md:hidden h-6 w-6 ${show ? 'hidden' : 'block'}`} />
