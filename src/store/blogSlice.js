@@ -30,28 +30,28 @@ export const getLatestBlogs = createAsyncThunk("blogs/getLatestBlogs", async () 
 // get by technology category blogs request
 export const getTechnologyBlogs = createAsyncThunk("blog/getTechnologyBlogs", async () => {
     const resp = await baseAPI.get("/blogs");
-    const filterTechnology = resp.data?.filter(list => list.category === "technology")
+    const filterTechnology = resp.data?.filter(list => list.category === "Technology")
     return filterTechnology;
 })
 
 // get by technology category blogs request
 export const getRelationshipBlogs = createAsyncThunk("blog/getRelationshipBlogs", async () => {
     const resp = await baseAPI.get("/blogs");
-    const filterTechnology = resp.data?.filter(list => list.category === "relationship")
+    const filterTechnology = resp.data?.filter(list => list.category === "Relationship")
     return filterTechnology;
 })
 
 // get by technology category blogs request
 export const getLifestyleBlogs = createAsyncThunk("blog/getLifestyleBlogs", async () => {
     const resp = await baseAPI.get("/blogs");
-    const filterTechnology = resp.data?.filter(list => list.category === "lifestyle")
+    const filterTechnology = resp.data?.filter(list => list.category === "Lifestyle")
     return filterTechnology;
 })
 
 // get by others category blogs request
 export const getOtherBlogs = createAsyncThunk("blog/getOtherBlogs", async () => {
     const resp = await baseAPI.get("/blogs");
-    const filterOthers = resp.data?.filter(list => list.category !== ["technology", "lifestyle", "relationship"])
+    const filterOthers = resp.data?.filter(list => list.category !== ["Technology", "Lifestyle", "Relationship"])
     return filterOthers;
 })
 
