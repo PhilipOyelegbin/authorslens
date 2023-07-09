@@ -29,7 +29,7 @@ const Register = () => {
       document.title = "AuthorsLens: Register"
       if(hasSubmitted) {
         setTimeout(() => {
-            if(regUser === 200) {
+            if(regUser === 201) {
                 toast.success("Sent successfully")
                 formik.resetForm()
                 navigate("/login")
