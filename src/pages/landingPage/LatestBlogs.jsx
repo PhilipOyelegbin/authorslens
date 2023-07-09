@@ -23,12 +23,13 @@ const LatestBlogs = () => {
                 <figure className='hover:-translate-y-2 duration-300' key={blog.id}>
                     <img className='rounded-t-2xl object-fill w-full h-56' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
                     <figcaption className='bg-slate-300 px-3 py-5 rounded-b-2xl'>
-                        <h3 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h3>
+                        <h4>{blog.title || "Unknown"}</h4>
+                        <h6 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h6>
                         <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>
                         <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link>
                     </figcaption>
-                </figure>))
-            }
+                </figure>
+            ))}
         </div>
     </section>
   )

@@ -20,13 +20,13 @@ const Founders = () => {
       <Hero/>
 
       {/* about info */}
-      <section className="px-5 py-10 md:px-20 bg-[#13274f] text-slate-200 flex flex-col justify-between gap-3 md:flex-row">
+      <section className="px-5 py-10 md:px-20 bg-[#13274f] text-slate-200 flex flex-col justify-between gap-3 md:flex-row rounded-bl-[60px]">
         <div>
           <h5>WHO WE ARE</h5>
         </div>
         <div className="md:w-2/3">
-          <h4 className="text-[#C31192] mb-3">Authors Lens was founded to give new writers a platform to test their writing skills before going out publicly with their skillsets.</h4>
-          <p>We are a group of young, passionate and driven individuals who are passionate about creating</p>
+          <h4 className="text-[#C31192] mb-3">Authors Lens was established with the purpose of providing aspiring writers a platform to hone their skills and gain confidence before showcasing their talents to a wider audience.</h4>
+          <p>Our platform offers a supportive environment for writers to refine their writing abilities and embark on a journey of professional growth. With us, writers can freely experiment, receive constructive feedback, and cultivate their unique writing styles. We believe in nurturing talent and empowering writers to pursue their writing careers with proficiency and self-assurance. Through our inclusive community, we foster an atmosphere of creativity and learning, allowing writers to develop their craft while building connections with fellow wordsmiths. At Authors Lens, we are dedicated to empowering emerging writers and fostering a vibrant writing community.</p>
         </div>
       </section>
 

@@ -7,13 +7,13 @@ import { postBlogs } from "../../store/blogSlice";
 
 const Write = () => {
     const [writer, setWriter] = useState({
-        author_id: sessionStorage.getItem("user"), title: "", content: ""
+        author_id: sessionStorage.getItem("user"), category: "others", title: "", content: ""
     });
     const [image, setImage] = useState("")
 
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    const {loading, create, error} = useSelector(state => state.blogs)
+    const {loading, create} = useSelector(state => state.blogs)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -38,6 +38,7 @@ const Write = () => {
         const formData = new FormData()
         formData.append("cover_image", image)
         formData.append("author_id", writer.author_id)
+        formData.append("category", writer.category)
         formData.append("title", writer.title)
         formData.append("content", writer.content)
 
@@ -58,7 +59,7 @@ const Write = () => {
             setTimeout(() => {
                 if(create.status === 201) {
                     toast.success("Published successfully")
-                    setWriter({author_id: "", title: "", content: ""})
+                    setWriter({author_id: sessionStorage.getItem("user"), category: "others", title: "", content: ""})
                     setImage("")
                     navigate("/")
                 } else {
@@ -90,9 +91,19 @@ const Write = () => {
                         <input type="file" id="cover_image" name="cover_image" accept="image/*" onChange={e => setImage(e.target.files[0])} required/>
                     </div>
                     <div className="form-control">
-                        <label htmlFor="title">Title</label>
-                        <input id="title" placeholder="Enter article title" name="title" value={writer.title} onChange={handleChange} required/>
+                        <label htmlFor="category">Category</label>
+                        <select name="category" id="category" onChange={handleChange}>
+                            <option value="">[Select a category]</option>
+                            <option value="technology">Technology</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="Relationship">Relationship</option>
+                            <option value="others">Others</option>
+                        </select>
                     </div>
+                </div>
+                <div className="form-control">
+                    <label htmlFor="title">Title</label>
+                    <input id="title" placeholder="Enter article title" name="title" value={writer.title} onChange={handleChange} required/>
                 </div>
                 <div className="form-control">
                     <label htmlFor="content">Article</label>

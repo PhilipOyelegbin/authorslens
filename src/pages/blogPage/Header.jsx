@@ -1,20 +1,24 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
+import { getBlogs, getLifestyleBlogs, getOtherBlogs, getRelationshipBlogs, getTechnologyBlogs, searchBlogs } from '../../store/blogSlice';
 
 const Header = () => {
   const [toggleFilter, setToggleFilter] = useState(false)
   const [searchInput, setSearchInput] = useState("")
-  const [searchResult, setSearchResult] = useState([])
+  // const [searchResult, setSearchResult] = useState([])
 
-  const {data} = useSelector(state => state.searchBlog)
+  // const {blogs} = useSelector(state => state.blogs)
+
+  const dispatch = useDispatch()
 
   function handleSearch(e) {
     e.preventDefault()
     setSearchInput(e.target.value)
-    const filteredSearch = data?.filter(searchedItem => searchedItem.category == searchInput)
-    setSearchResult(filteredSearch)
-    openModal()
+    dispatch(searchBlogs(searchInput))
+    // const filteredSearch = data?.filter(searchedItem => searchedItem.category == searchInput)
+    // setSearchResult(filteredSearch)
+    // openModal()
   }
 
   return (
@@ -25,10 +29,11 @@ const Header = () => {
           <button className='flex justify-between items-center w-full border-b-2 p-1' onClick={() => setToggleFilter(prev => !prev)}>Filter <FaChevronDown/></button>
 
           <ul className={`${!toggleFilter ? "hidden" : "block"} w-full bg-slate-300 absolute top-8 p-3 transition-all ease-in-out duration-300`}>
-            <li className='hover:bg-[#13274f] hover:text-slate-300'>All</li>
-            <li className='hover:bg-[#13274f] hover:text-slate-300'>Technology</li>
-            <li className='hover:bg-[#13274f] hover:text-slate-300'>Lifestyle</li>
-            <li className='hover:bg-[#13274f] hover:text-slate-300'>Relationship</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300' onClick={() => {dispatch(getBlogs()), setToggleFilter(false)}}>All</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300' onClick={() => {dispatch(getTechnologyBlogs()), setToggleFilter(false)}}>Technology</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300' onClick={() => {dispatch(getLifestyleBlogs()), setToggleFilter(false)}}>Lifestyle</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300' onClick={() => {dispatch(getRelationshipBlogs()), setToggleFilter(false)}}>Relationship</li>
+            <li className='hover:bg-[#13274f] hover:text-slate-300' onClick={() => {dispatch(getOtherBlogs()), setToggleFilter(false)}}>Others</li>
           </ul>
         </div>
 

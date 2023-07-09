@@ -23,10 +23,12 @@ const SingleBlog = () => {
         <h2 className='text-center mt-3'>{filteredBlog[0]?.title}</h2>
         <div className='flex items-center justify-between my-3'>
           <h4>{filteredBlog[0]?.author.first_name} {filteredBlog[0]?.author.last_name}</h4>
-          <div className='flex items-center text-2xl gap-3 md:gap-5'>
-            <FaPen className='text-blue-500'/>
-            <FaTrash className='text-red-500'/>
-          </div>
+          {(sessionStorage.getItem('user') === (filteredBlog[0]?.author.first_name + filteredBlog[0]?.author.last_name)) && (
+            <div className='flex items-center text-2xl gap-3 md:gap-5'>
+              <FaPen className='text-blue-500'/>
+              <FaTrash className='text-red-500'/>
+            </div>
+          )}
         </div>
         <p className='text-justify first-letter:text-2xl first-letter:pl-10' dangerouslySetInnerHTML={{__html: filteredBlog[0]?.content}}></p>
         <div className='flex items-center justify-between my-3'>
