@@ -26,7 +26,8 @@ const LatestBlogs = () => {
                         <h4>{blog.title || "Unknown"}</h4>
                         <h6 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h6>
                         <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>
-                        <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link>
+                        {/* <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link> */}
+                        <Link to={`/blog/${blog.id}`} className='btn'>Read more</Link>
                     </figcaption>
                 </figure>
             ))}
