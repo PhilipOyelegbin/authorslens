@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoutes from './utilities/ProtectedRoutes';
 import SharedLayout from './utilities/SharedLayout';
 import Loader from './components/Loader';
+import Edit from './pages/bloggerPage/Edit';
 
 const Home = lazy(() => import('./pages/landingPage/Home'));
 const Founders = lazy(() => import('./pages/aboutPage/Founders'));
@@ -30,6 +31,7 @@ function App() {
           <Route path='write' element={<Write/>}/>
         </Route>
         <Route path='blog/:id' element={<SingleBlog/>}/>
+        <Route path='update/:id' element={<Edit/>}/>
       </Route>
     )
   );

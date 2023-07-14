@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseAPI } from "../api";
 
-const initialState = {loading: false, blogs: [], create: [], latest_blogs: [], error: ""}
+const initialState = {loading: false, blogs: [], create: [], read: [], update: [], remove: [], latest_blogs: [], error: ""}
 
 // get all blogs request
 export const getBlogs = createAsyncThunk("blog/getBlogs", async () => {
@@ -11,7 +11,7 @@ export const getBlogs = createAsyncThunk("blog/getBlogs", async () => {
 })
 
 // post blog request
-export const postBlogs = createAsyncThunk("blog/postBlogs", async (data) => {
+export const postBlog = createAsyncThunk("blog/postBlog", async (data) => {
     const resp = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/blogs`, data, {
         headers: {
             "Content-Type": "multipart/form-data",
@@ -19,6 +19,28 @@ export const postBlogs = createAsyncThunk("blog/postBlogs", async (data) => {
         },
     })
     return resp;
+})
+
+// update blog request
+export const updateBlog = createAsyncThunk("blog/updateBlog", async (data) => {
+    const resp = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/blogs/${data?.id}`, data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+        },
+    })
+    return resp;
+})
+
+// delete blogs request
+export const deleteBlog = createAsyncThunk("blog/deleteBlog", async (id) => {
+    const resp = await baseAPI.delete(`/blogs/${id}`, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+        },
+    });
+    return resp.status;
 })
 
 // get latest blogs request
@@ -61,6 +83,12 @@ export const searchBlogs = createAsyncThunk("blog/searchBlogs", async (data) => 
     return resp.data;
 })
 
+// read more blogs request
+export const readBlog = createAsyncThunk("blog/readBlogs", async (id) => {
+    const resp = await baseAPI.get(`/blogs/${id}`);
+    return resp.data;
+})
+
 const blogSlice = createSlice({
     name: "blogs",
     initialState,
@@ -77,8 +105,8 @@ const blogSlice = createSlice({
             state.error = action.error.message
         }),
         // ------------------post blog--------------------
-        builder.addCase(postBlogs.pending, (state => {state.loading = true})),
-        builder.addCase(postBlogs.fulfilled, (state, action) => {
+        builder.addCase(postBlog.pending, (state => {state.loading = true})),
+        builder.addCase(postBlog.fulfilled, (state, action) => {
             state.loading = false;
             if(!action.error?.message) {
                 state.error = ""
@@ -87,9 +115,41 @@ const blogSlice = createSlice({
                 state.error = action.error.message
             }
         }),
-        builder.addCase(postBlogs.rejected, (state, action) => {
+        builder.addCase(postBlog.rejected, (state, action) => {
             state.loading = false,
             state.create = [],
+            state.error = action.error.message
+        }),
+        // ------------------update blog--------------------
+        builder.addCase(updateBlog.pending, (state => {state.loading = true})),
+        builder.addCase(updateBlog.fulfilled, (state, action) => {
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.update = action.payload
+            } else {
+                state.error = action.error.message
+            }
+        }),
+        builder.addCase(updateBlog.rejected, (state, action) => {
+            state.loading = false,
+            state.update = [],
+            state.error = action.error.message
+        }),
+        // ------------------delete blog--------------------
+        builder.addCase(deleteBlog.pending, (state => {state.loading = true})),
+        builder.addCase(deleteBlog.fulfilled, (state, action) => {
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.remove = action.payload
+            } else {
+                state.error = action.error.message
+            }
+        }),
+        builder.addCase(deleteBlog.rejected, (state, action) => {
+            state.loading = false,
+            state.remove = [],
             state.error = action.error.message
         }),
         // --------------------latest blogs---------------------
@@ -156,6 +216,17 @@ const blogSlice = createSlice({
         builder.addCase(searchBlogs.rejected, (state, action) => {
             state.loading = false,
             state.blogs = [],
+            state.error = action.error.message
+        }),
+        // --------------------read blogs--------------------
+        builder.addCase(readBlog.pending, (state => {state.loading = true})),
+        builder.addCase(readBlog.fulfilled, (state, action) => {
+            state.loading = false,
+            state.read = action.payload
+        }),
+        builder.addCase(readBlog.rejected, (state, action) => {
+            state.loading = false,
+            state.read = [],
             state.error = action.error.message
         })
     }

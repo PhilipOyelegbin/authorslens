@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import JoditEditor from 'jodit-react';
-import { postBlogs } from "../../store/blogSlice";
+import { postBlog } from "../../store/blogSlice";
+import { logoutUser } from "../../store/authSlice";
 
 const Write = () => {
     const [writer, setWriter] = useState({
@@ -26,7 +27,6 @@ const Write = () => {
         []
     )
 
-
     // a function for handling form input changes
     function handleChange(e) {
         const {name, value} = e.target
@@ -35,6 +35,8 @@ const Write = () => {
 
     // a function for handling form submission
     function handlePublish(e) {
+        e.preventDefault();
+
         const formData = new FormData()
         formData.append("cover_image", image)
         formData.append("author_id", writer.author_id)
@@ -42,15 +44,15 @@ const Write = () => {
         formData.append("title", writer.title)
         formData.append("content", writer.content)
 
-        e.preventDefault()
-        dispatch(postBlogs(formData))
+        dispatch(postBlog(formData))
         setHasSubmitted(true)
     };
 
     // a function for handling user logout action
     function handleLogout() {
-        navigate('/login');
+        dispatch(logoutUser())
         sessionStorage.clear();
+        navigate('/login');
     }
 
     useEffect(() => {

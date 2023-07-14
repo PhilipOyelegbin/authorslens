@@ -21,6 +21,12 @@ export const authenticateUser = createAsyncThunk('authentication/authenticateUse
     return resp;
 })
 
+// -----------logout request--------------------------
+export const logoutUser = createAsyncThunk('authentication/logoutUser', async () => {
+    const resp = await baseAPI.post("/token/logout");
+    return resp;
+})
+
 const authSlice = createSlice({
     name: "authentication",
     initialState,
@@ -69,6 +75,22 @@ const authSlice = createSlice({
             }
         }),
         builder.addCase(authenticateUser.rejected, (state, action) => {
+            state.loading = false,
+            state.token = [],
+            state.error = action.error.message
+        }),
+        // ---------------logout------------------
+        builder.addCase(logoutUser.pending, (state)=>{state.loading = true}),
+        builder.addCase(logoutUser.fulfilled, (state, action) => {
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.token = action.payload
+            } else {
+                state.error = action.error.message
+            }
+        }),
+        builder.addCase(logoutUser.rejected, (state, action) => {
             state.loading = false,
             state.token = [],
             state.error = action.error.message
