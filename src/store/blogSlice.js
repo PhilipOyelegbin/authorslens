@@ -6,7 +6,7 @@ const initialState = {loading: false, blogs: [], create: [], read: [], update: [
 
 // get all blogs request
 export const getBlogs = createAsyncThunk("blog/getBlogs", async () => {
-    const resp = await baseAPI.get("/blogs");
+    const resp = await baseAPI.get("/blogs?ordering=created_on");
     return resp.data;
 })
 
@@ -23,7 +23,7 @@ export const postBlog = createAsyncThunk("blog/postBlog", async (data) => {
 
 // update blog request
 export const updateBlog = createAsyncThunk("blog/updateBlog", async (data) => {
-    const resp = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/blogs/${sessionStorage.getItem("blog_id")}`, data, {
+    const resp = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/blogs/${sessionStorage.getItem("blog_id")}`, data, {
         headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Token ${sessionStorage.getItem("token")}`,
@@ -44,8 +44,9 @@ export const deleteBlog = createAsyncThunk("blog/deleteBlog", async (id) => {
 
 // get latest blogs request
 export const getLatestBlogs = createAsyncThunk("blogs/getLatestBlogs", async () => {
-    const resp = await baseAPI.get("/blogs?ordering=-created_on?size=6");
-    return resp.data;
+    const resp = await baseAPI.get("/blogs?ordering=-created_on");
+    const slicedResponse = resp?.data.slice(0, 8)
+    return slicedResponse;
 })
 
 // get by technology category blogs request

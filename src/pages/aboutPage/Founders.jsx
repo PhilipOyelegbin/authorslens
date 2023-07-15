@@ -1,9 +1,9 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa"
 import peter from '../../assets/peter.jpg';
 import philip from '../../assets/philip.jpg';
-import { Link } from "react-router-dom";
 import Hero from "./Hero";
-import { useEffect } from "react";
 
 const Founders = () => {
   const initiators = [

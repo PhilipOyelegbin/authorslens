@@ -75,6 +75,7 @@ const Edit = () => {
   return (
     <section className='flex flex-row justify-between items-center p-5'>
       <form onSubmit={handleUpdate} encType='multipart/form-data' autoComplete="off" className='p-5 w-full lg:p-10 lg:w-5/6 lg:mx-auto'>
+        <h4 className="lg:text-center">Revamp your outlook and embrace a fresh perspective.</h4>
         <div className="flex flex-col lg:flex-row lg:items-end lg:gap-10">
           <div className="form-control">
             <label htmlFor="cover_image">Upload cover image</label>

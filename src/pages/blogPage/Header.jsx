@@ -1,14 +1,11 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaChevronDown } from 'react-icons/fa';
 import { getBlogs, getLifestyleBlogs, getOtherBlogs, getRelationshipBlogs, getTechnologyBlogs, searchBlogs } from '../../store/blogSlice';
 
 const Header = () => {
   const [toggleFilter, setToggleFilter] = useState(false)
   const [searchInput, setSearchInput] = useState("")
-  // const [searchResult, setSearchResult] = useState([])
-
-  // const {blogs} = useSelector(state => state.blogs)
 
   const dispatch = useDispatch()
 
@@ -16,9 +13,6 @@ const Header = () => {
     e.preventDefault()
     setSearchInput(e.target.value)
     dispatch(searchBlogs(searchInput))
-    // const filteredSearch = data?.filter(searchedItem => searchedItem.category == searchInput)
-    // setSearchResult(filteredSearch)
-    // openModal()
   }
 
   return (

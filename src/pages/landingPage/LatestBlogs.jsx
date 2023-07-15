@@ -14,7 +14,7 @@ const LatestBlogs = () => {
   return (
     <section id="latest-blogs" className='px-5 my-10 md:px-20'>
         <div className="flex justify-between items-center gap-3">
-            <h2>Latest Blog</h2>
+            <h2>Recent blogs</h2>
             <Link to="/blogs" className="btn">View all</Link>
         </div>
         {loading ? <h4 className="text-center my-5">Loading...</h4> : error && <h4 className="text-center my-5">Unable to load blogs</h4>}
@@ -26,7 +26,6 @@ const LatestBlogs = () => {
                         <h4>{blog.title || "Unknown"}</h4>
                         <h6 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h6>
                         <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>
-                        {/* <Link to={`/blog/${blog.id}`} className='btn w-36 text-center'>Read more</Link> */}
                         <Link to={`/blog/${blog.id}`} className='btn'>Read more</Link>
                     </figcaption>
                 </figure>
