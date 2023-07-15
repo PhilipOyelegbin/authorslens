@@ -30,7 +30,6 @@ const Register = () => {
       if(hasSubmitted) {
         setTimeout(() => {
             if(regUser === 201) {
-                toast.success("Sent successfully")
                 formik.resetForm()
                 navigate("/login")
                 setHasSubmitted(false)

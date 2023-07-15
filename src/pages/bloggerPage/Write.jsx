@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import JoditEditor from 'jodit-react';
 import { postBlog } from "../../store/blogSlice";
-import { logoutUser } from "../../store/authSlice";
 
 const Write = () => {
     const [writer, setWriter] = useState({
@@ -15,6 +14,7 @@ const Write = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
     const {loading, create} = useSelector(state => state.blogs)
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -47,13 +47,6 @@ const Write = () => {
         dispatch(postBlog(formData))
         setHasSubmitted(true)
     };
-
-    // a function for handling user logout action
-    function handleLogout() {
-        dispatch(logoutUser())
-        sessionStorage.clear();
-        navigate('/login');
-    }
 
     useEffect(() => {
         document.title = 'AuthorsLens: Write a blog!';
@@ -119,7 +112,6 @@ const Write = () => {
                     />
                 </div>
                 <button type="submit" className="btn text-[#C31192] bg-slate-300 hover:text-slate-300 hover:bg-[#C31192]">{loading ? "Loading" : "Publish"}</button>
-                <button className='btn text-slate-300 bg-slate-700 hover:text-slate-700 hover:bg-gray-300 ml-5' onClick={handleLogout}>Log Out</button>
             </form>
         </section>
     </>

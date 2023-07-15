@@ -24,6 +24,8 @@ const SingleBlog = () => {
 
   useEffect(() => {
     dispatch(readBlog(id))
+    document.title = `AuthorsLens: ${read?.title}`
+
     if(hasSubmitted) {
       setTimeout(() => {
         if(remove === 204) {
@@ -35,7 +37,7 @@ const SingleBlog = () => {
         }
       }, 2000);
     }
-  }, [remove, id])
+  }, [remove, id, read?.title])
 
   return (
     <section>

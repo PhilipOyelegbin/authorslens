@@ -28,7 +28,6 @@ const Login = () => {
         if(hasSubmitted) {
             setTimeout(() => {
                 if(logUser === 200) {
-                    toast.success("Sent successfully")
                     formik.resetForm()
                     navigate("/auth")
                     setHasSubmitted(false)

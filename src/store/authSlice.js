@@ -22,8 +22,12 @@ export const authenticateUser = createAsyncThunk('authentication/authenticateUse
 })
 
 // -----------logout request--------------------------
-export const logoutUser = createAsyncThunk('authentication/logoutUser', async () => {
-    const resp = await baseAPI.post("/token/logout");
+export const logoutUser = createAsyncThunk('authentication/logoutUser', async (data) => {
+    const resp = await baseAPI.post("/token/logout", data, {
+        headers: {
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+        },
+    });
     return resp;
 })
 

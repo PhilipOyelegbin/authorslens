@@ -27,7 +27,6 @@ const Auth = () => {
         if(hasSubmitted) {
             setTimeout(() => {
                 if(token.status === 200) {
-                    toast.success("Sent successfully")
                     sessionStorage.setItem("token", token?.data.token)
                     sessionStorage.setItem("user", token?.data.user)
                     formik.resetForm()
@@ -46,7 +45,7 @@ const Auth = () => {
         <form onSubmit={formik.handleSubmit} autoComplete="off" className="w-full md:w-1/2">
             <h3 className='text-center'>Token authentication</h3>
             <div className="form-control">
-                <label htmlFor="token">Token</label>
+                <label htmlFor="token">Enter token</label>
                 <input id="token" placeholder="Check your email for login token" {...formik.getFieldProps('token')}/>
                 {(formik.touched.token && formik.errors.token) && <p className="text-red-500">{formik.errors.token}</p>}
             </div>

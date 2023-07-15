@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import JoditEditor from 'jodit-react';
@@ -9,9 +9,9 @@ const Edit = () => {
   const {id} = useParams()
   const {loading, read, update} = useSelector(state => state.blogs)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [writer, setWriter] = useState({
-    id,
     author_id: sessionStorage.getItem("user"),
     category: read?.category,
     title: read?.title,
@@ -41,6 +41,7 @@ const Edit = () => {
   // a function for handling form submission
   function handleUpdate(e) {
     e.preventDefault();
+    sessionStorage.setItem("blog_id", id)
 
     const formData = new FormData()
     formData.append("cover_image", image)
@@ -49,7 +50,7 @@ const Edit = () => {
     formData.append("title", writer.title)
     formData.append("content", writer.content)
 
-    dispatch(updateBlog(formData, id))
+    dispatch(updateBlog(formData))
     setHasSubmitted(true)
   };
 
@@ -58,7 +59,7 @@ const Edit = () => {
     dispatch(readBlog(id))
     if(hasSubmitted) {
       setTimeout(() => {
-        if(update.status === 201) {
+        if(update.status === 200) {
           toast.success("Updated successfully")
           setWriter({author_id: sessionStorage.getItem("user"), category: "others", title: "", content: ""})
           setImage("")
@@ -77,7 +78,7 @@ const Edit = () => {
         <div className="flex flex-col lg:flex-row lg:items-end lg:gap-10">
           <div className="form-control">
             <label htmlFor="cover_image">Upload cover image</label>
-            <input type="file" id="cover_image" name="cover_image" accept="image/*" onChange={e => setImage(e.target.files[0])} />
+            <input type="file" id="cover_image" name="cover_image" accept="image/*" onChange={e => setImage(e.target.files[0])} required/>
           </div>
           <div className="form-control">
             <label htmlFor="category">Category</label>

@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {FaBars, FaTimes} from 'react-icons/fa'
+import { toast } from 'react-toastify';
+import { logoutUser } from '../store/authSlice';
 import logo from '../assets/logo-light.png'
 
 const Nav = () => {
   const [show, setShow] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false)
   const [controlHeader, setControlHeader] = useState(true)
+  const {token} = useSelector(state => state.authUser)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const menuContent = [
     {id: 1, label: 'Home', link: '/'},
@@ -28,12 +36,30 @@ const Nav = () => {
     }
   }
 
+  // a function for handling user logout action
+  function handleLogout() {
+    dispatch(logoutUser({token: ""}))
+    setLoggedOut(true)
+  }
+
   useEffect(() => {
+    if(loggedOut) {
+      setTimeout(() => {
+        if(token.status === 204) {
+          sessionStorage.clear();
+          navigate('/login');
+        } else {
+          toast.error("Unable to logout, try again!")
+          setLoggedOut(false)
+        }
+      }, 2000);
+    }
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [])
+  }, [token.status])
 
   return (
     <header className={`flex justify-between items-center shadow-sm shadow-slate-400 w-screen md:w-full text-[#13274f] p-5 md:px-20 md:py-5 z-30 ease-in duration-300 bg-slate-200 ${!controlHeader && "-md:translate-y-48"}`}>
@@ -49,6 +75,7 @@ const Nav = () => {
           {menuContent && menuContent?.map((contents) => (
             <li className='text-2xl mb-3 md:mb-0' key={contents.id}><NavLink className={({isActive})=> isActive ? 'opacity-50' : undefined} to={contents.link} onClick={handleMenuContent}>{contents.label}</NavLink></li>
           ))}
+          {sessionStorage.getItem('user') && <button className='btn text-slate-300 bg-slate-700 hover:text-slate-700 hover:bg-gray-300' onClick={handleLogout}>Log Out</button>}
         </ul>
       </nav>
     </header>

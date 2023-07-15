@@ -23,7 +23,7 @@ export const postBlog = createAsyncThunk("blog/postBlog", async (data) => {
 
 // update blog request
 export const updateBlog = createAsyncThunk("blog/updateBlog", async (data) => {
-    const resp = await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/blogs/${data?.id}`, data, {
+    const resp = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/blogs/${sessionStorage.getItem("blog_id")}`, data, {
         headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Token ${sessionStorage.getItem("token")}`,
@@ -36,7 +36,6 @@ export const updateBlog = createAsyncThunk("blog/updateBlog", async (data) => {
 export const deleteBlog = createAsyncThunk("blog/deleteBlog", async (id) => {
     const resp = await baseAPI.delete(`/blogs/${id}`, {
         headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Token ${sessionStorage.getItem("token")}`,
         },
     });
