@@ -55,9 +55,9 @@ const SingleBlog = () => {
             )}
           </div>
           <p className='text-justify first-letter:text-2xl first-letter:pl-10' dangerouslySetInnerHTML={{__html: read?.content}}></p>
-          <div className='flex items-center justify-between my-3'>
-            <h6>Create: {read?.created_on}</h6>
-            <h6>Updated:{read?.updated_on}</h6>
+          <div className='flex flex-col gap-2 items-center md:flex-row md:justify-between my-3'>
+            <h6>Created: {read?.created_on}</h6>
+            <h6>Updated: {read?.updated_on}</h6>
           </div>
         </article>
       }
