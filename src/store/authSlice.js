@@ -33,11 +33,7 @@ export const logoutUser = createAsyncThunk('authentication/logoutUser', async (d
 
 // -----------password reset request--------------------------
 export const resetPassword = createAsyncThunk('authentication/resetPassword', async (data) => {
-    const resp = await baseAPI.post("/users/reset_password", data, {
-        headers: {
-            "Content-Type": "application/json"
-           }
-    });
+    const resp = await baseAPI.post("/users/reset_password", data);
     return resp;
 })
 
