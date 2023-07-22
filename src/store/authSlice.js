@@ -33,7 +33,7 @@ export const logoutUser = createAsyncThunk('authentication/logoutUser', async (d
 
 // -----------password reset request--------------------------
 export const resetPassword = createAsyncThunk('authentication/resetPassword', async (data) => {
-    const resp = await baseAPI.post("/users/reset_password", data);
+    const resp = await baseAPI.post("/users/reset_password/", data);
     return resp;
 })
 
@@ -123,6 +123,22 @@ const authSlice = createSlice({
             }
         }),
         builder.addCase(resetPassword.rejected, (state, action)=>{
+            state.loading = false,
+            state.reset = [],
+            state.error = action.error.message
+        }),
+        // ----------------password---------------
+        builder.addCase(passwordConfirm.pending, (state)=>{state.loading = true}),
+        builder.addCase(passwordConfirm.fulfilled, (state, action)=>{
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.reset = action.payload
+            } else {
+                state.error = action.error.message
+            }
+        }),
+        builder.addCase(passwordConfirm.rejected, (state, action)=>{
             state.loading = false,
             state.reset = [],
             state.error = action.error.message

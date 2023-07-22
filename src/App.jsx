@@ -16,8 +16,8 @@ const Error = lazy(() => import('./components/Error'));
 const Blog = lazy(() => import('./pages/blogPage/Blog'));
 const SingleBlog = lazy(() => import('./components/SingleBlog'));
 const Edit = lazy(() => import('./pages/bloggerPage/Edit'));
-const PasswordReset = lazy(() => import('./pages/bloggerPage/PasswordReset'));
 const ResetPortal = lazy(() => import('./pages/bloggerPage/ResetPortal'));
+const PasswordReset = lazy(() => import('./pages/bloggerPage/PasswordReset'));
 
 
 function App() {
@@ -35,8 +35,8 @@ function App() {
         </Route>
         <Route path='blog/:id' element={<SingleBlog/>}/>
         <Route path='update/:id' element={<Edit/>}/>
-        <Route path='reset' element={<PasswordReset/>}/>
-        <Route path='reset/confirm-password/:id/:token' element={<ResetPortal/>}/>
+        <Route path='reset' element={<ResetPortal/>}/>
+        <Route path='reset/confirm-password/:id/:token' element={<PasswordReset/>}/>
       </Route>
     )
   );
