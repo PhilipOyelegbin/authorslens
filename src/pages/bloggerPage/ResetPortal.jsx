@@ -36,7 +36,7 @@ const ResetPortal = () => {
   return (
     <section className='p-5 md:px-20'>
       <div className="bg-[#13274f] h-[30vh] flex flex-col justify-center px-5">
-        <h2 className='text-center text-slate-200'>Generate a reset link</h2>
+        <h2 className='text-center text-slate-200'>Generate a password reset link</h2>
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-control text-xl md:flex-row md:items-center px-5">
