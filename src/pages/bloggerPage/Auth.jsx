@@ -36,7 +36,7 @@ const Auth = () => {
                     toast.error("Token incorrect")
                     setHasSubmitted(false)
                 }
-            }, 2000);
+            }, 1000);
         }
     }, [token.status]);
 

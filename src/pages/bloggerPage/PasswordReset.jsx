@@ -26,13 +26,13 @@ function PasswordReset() {
   useEffect(() => {
     if(hasSubmitted) {
       setTimeout(() => {
-        if(reset.status === 200) {
+        if(reset.status === 204) {
           toast.success("Password reset was successful")
           formik.resetForm()
           navigate("/login")
           setHasSubmitted(false)
         } else {
-          toast.error(error)
+          toast.error("Unable to reset password")
         }
       }, 1000);
     }
@@ -64,7 +64,6 @@ function PasswordReset() {
             <label htmlFor="show">Show password</label>
           </div>
         </div>
-
       </form>
     </section>
   )

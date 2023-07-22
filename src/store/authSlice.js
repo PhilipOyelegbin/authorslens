@@ -39,7 +39,7 @@ export const resetPassword = createAsyncThunk('authentication/resetPassword', as
 
 // -----------password change request--------------------------
 export const passwordConfirm = createAsyncThunk('authentication/passwordConfirm', async (data) => {
-    const resp = await baseAPI.post("/users/reset_password_confirm", data);
+    const resp = await baseAPI.post("/users/reset_password_confirm/", data);
     return resp;
 })
 

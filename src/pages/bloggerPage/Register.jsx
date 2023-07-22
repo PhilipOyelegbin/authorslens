@@ -37,7 +37,7 @@ const Register = () => {
                 toast.error("Unable to register, try again later!")
                 setHasSubmitted(false)
             }
-        }, 2000);
+        }, 1000);
       }
     }, [regUser])
 

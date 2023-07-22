@@ -35,7 +35,7 @@ const Login = () => {
                     toast.error("Email or password incorrect")
                     setHasSubmitted(false)
                 }
-            }, 2000);
+            }, 1000);
         }
     }, [logUser]);
 

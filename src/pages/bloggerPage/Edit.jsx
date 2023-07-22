@@ -68,7 +68,7 @@ const Edit = () => {
           toast.error("Unable to update, try again later!")
           setHasSubmitted(false)
         }
-      }, 2000);
+      }, 1000);
     }
   }, [update.status])
 

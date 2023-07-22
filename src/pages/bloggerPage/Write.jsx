@@ -61,7 +61,7 @@ const Write = () => {
                     toast.error("Unable to publish, try again later!")
                     setHasSubmitted(false)
                 }
-            }, 2000);
+            }, 1000);
         }
     }, [create.status])
 

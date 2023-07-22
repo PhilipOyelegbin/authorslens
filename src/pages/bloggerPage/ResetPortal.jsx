@@ -44,7 +44,7 @@ const ResetPortal = () => {
           <button type="submit" className="btn bg-slate-600 hover:bg-slate-500 hover:text-white h-14 rounded-none">{loading ? "Loading..." : "SEND"}</button>
         </div>
         {(formik.touched.email && formik.errors.email) && <p className="text-red-500 pl-5">{formik.errors.email}</p>}
-        {reset.status === 204 && <p className="text-blue-500 text-center">Check your email</p>}
+        {reset.status === 204 && <h6 className="text-blue-500 text-center">Check your email</h6>}
       </form>
     </section>
   )

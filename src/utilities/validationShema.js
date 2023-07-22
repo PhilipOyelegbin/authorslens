@@ -23,5 +23,5 @@ export const resetSchema = yup.object({
 
 export const passwordSchema = yup.object({
     new_password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@,$!%*?&.])[A-Za-z\d@,$!%*?&.]{8,}$/, "Minimum 8 characters including at least 1 uppercase, lowercase, number and special character").required('Required'),
-    re_new_password: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required')
+    re_new_password: yup.string().oneOf([yup.ref('new_password'), null], 'Passwords must match').required('Required')
 })

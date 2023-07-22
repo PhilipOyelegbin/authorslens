@@ -23,7 +23,7 @@ const LatestBlogs = () => {
                 <figure className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-translate-y-2' key={blog.id}>
                     <img className='w-full h-56 object-fill rounded-t-2xl' src={blog.cover_image || "cover-image"} loading="lazy" alt="cover_image" />
                     <figcaption className='p-3'>
-                        <h4>{blog.title || "Unknown"}</h4>
+                        <h4 className="line-clamp-1">{blog.title || "Unknown"}</h4>
                         <h6 className='text-[#C31192]'>{blog.author.first_name + " " + blog.author.last_name || "Unknown"}</h6>
                         <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: blog.content}}></p>
                         <Link to={`/blog/${blog.id}`} className='btn'>Read more</Link>
