@@ -70,6 +70,10 @@ const Login = () => {
                     </Link>
                 </p>
             </div>
+
+            <Link className='text-[#69094e] underline text-center mx-auto my-3' to='/reset'>
+                Forgot password!
+            </Link>
         </form>
 
         <div className='hidden md:block md:w-1/2'>

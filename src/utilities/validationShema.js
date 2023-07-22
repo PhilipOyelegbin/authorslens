@@ -17,6 +17,12 @@ export const authSchema = yup.object({
     token: yup.string().required('Required')
 })
 
-export const subscribeSchema = yup.object({
+export const resetSchema = yup.object({
     email: yup.string().email('Invalid email address').required('Required')
+})
+
+export const passwordSchema = yup.object({
+    email: yup.string().email('Invalid email address').required('Required'),
+    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@,$!%*?&.])[A-Za-z\d@,$!%*?&.]{8,}$/, "Minimum 8 characters including at least 1 uppercase, lowercase, number and special character").required('Required'),
+    re_password: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required')
 })

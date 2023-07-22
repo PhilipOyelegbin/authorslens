@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { baseAPI } from '../api';
 
-const initialState = {loading: false, regUser: [], logUser: [], token: [], error: ""}
+const initialState = {loading: false, regUser: [], logUser: [], token: [], reset:[], error: ""}
 
 // -----------registration request--------------------------
 export const registerUser = createAsyncThunk('authentication/registerUser', async (data) => {
@@ -31,6 +31,22 @@ export const logoutUser = createAsyncThunk('authentication/logoutUser', async (d
     return resp;
 })
 
+// -----------password reset request--------------------------
+export const resetPassword = createAsyncThunk('authentication/resetPassword', async (data) => {
+    const resp = await baseAPI.post("/users/reset_password", data, {
+        headers: {
+            "Content-Type": "application/json"
+           }
+    });
+    return resp;
+})
+
+// -----------password change request--------------------------
+export const passwordConfirm = createAsyncThunk('authentication/passwordConfirm', async (data) => {
+    const resp = await baseAPI.post("/users/reset_password_confirm", data);
+    return resp;
+})
+
 const authSlice = createSlice({
     name: "authentication",
     initialState,
@@ -50,7 +66,7 @@ const authSlice = createSlice({
             state.loading = false,
             state.regUser = [],
             state.error = action.error.message
-        })
+        }),
         // -------------------login---------------------
         builder.addCase(loginUser.pending, (state)=>{state.loading = true}),
         builder.addCase(loginUser.fulfilled, (state, action) => {
@@ -66,7 +82,7 @@ const authSlice = createSlice({
             state.loading = false,
             state.logUser = [],
             state.error = action.error.message
-        })
+        }),
         // ---------------authenticate------------------
         builder.addCase(authenticateUser.pending, (state)=>{state.loading = true}),
         builder.addCase(authenticateUser.fulfilled, (state, action) => {
@@ -97,6 +113,22 @@ const authSlice = createSlice({
         builder.addCase(logoutUser.rejected, (state, action) => {
             state.loading = false,
             state.token = [],
+            state.error = action.error.message
+        }),
+        // ----------------reset---------------
+        builder.addCase(resetPassword.pending, (state)=>{state.loading = true}),
+        builder.addCase(resetPassword.fulfilled, (state, action)=>{
+            state.loading = false;
+            if(!action.error?.message) {
+                state.error = ""
+                state.reset = action.payload
+            } else {
+                state.error = action.error.message
+            }
+        }),
+        builder.addCase(resetPassword.rejected, (state, action)=>{
+            state.loading = false,
+            state.reset = [],
             state.error = action.error.message
         })
     }
