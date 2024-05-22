@@ -17,31 +17,31 @@
   }
 
   h1 {
-    @apply text-[38px] leading-10 font-bold;
+    @apply text-2xl font-bold;
   }
 
   h2 {
-    @apply text-[34px] leading-9 font-semibold;
+    @apply text-[22px] leading-7 font-semibold;
   }
 
   h3 {
-    @apply text-3xl font-medium;
+    @apply text-xl font-medium;
   }
 
   h4 {
-    @apply text-[26px] leading-8 font-medium;
+    @apply text-lg font-medium;
   }
 
   h5 {
-    @apply text-[22px] leading-7 font-normal;
+    @apply text-[16px] leading-5 font-normal;
   }
 
   h6 {
-    @apply text-lg font-normal;
+    @apply text-sm font-normal;
   }
 
   p {
-    @apply text-sm font-light;
+    @apply text-xs font-light;
   }
 
   h1, h2, h3, h4 {
@@ -67,6 +67,6 @@
   }
 
   .btn {
-    @apply text-xl text-center bg-[#C31192] text-slate-200 hover:bg-slate-200 hover:text-[#C31192] rounded-md px-5 py-2 ease-linear duration-300;
+    @apply text-lg text-center bg-[#C31192] text-slate-200 hover:bg-slate-200 hover:text-[#C31192] rounded-md px-5 py-2 ease-linear duration-300;
   }
 }

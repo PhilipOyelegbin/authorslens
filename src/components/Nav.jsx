@@ -19,7 +19,8 @@ const Nav = () => {
     {id: 1, label: 'Home', link: '/'},
     {id: 2, label: 'About Us', link: 'about-us'},
     {id: 3, label: 'Blogs', link: 'blogs'},
-    {id: 4, label: 'Write', link: 'write'},
+    {id: 4, label: 'News', link: 'news'},
+    {id: 5, label: 'Write', link: 'write'},
   ];
 
   show ? document.getElementById("root").classList.add("fixed") : document.getElementById("root").classList.remove("fixed");
@@ -73,7 +74,7 @@ const Nav = () => {
       <nav className={`fixed bg-slate-200 w-full pl-5 py-4 top-16 transition-all ease-in-out duration-300 md:static md:w-auto md-pl-0 md:py-0 z-20 ${show ? 'right-0' : '-right-full'}`}>
         <ul className="gap-5 md:flex md:items-center">
           {menuContent && menuContent?.map((contents) => (
-            <li className='text-2xl mb-3 md:mb-0' key={contents.id}><NavLink className={({isActive})=> isActive ? 'opacity-50' : undefined} to={contents.link} onClick={handleMenuContent}>{contents.label}</NavLink></li>
+            <li className='text-xl mb-3 md:mb-0' key={contents.id}><NavLink className={({isActive})=> isActive ? 'opacity-50 ease-in-out duration-300' : "hover:opacity-50"} to={contents.link} onClick={handleMenuContent}>{contents.label}</NavLink></li>
           ))}
           {sessionStorage.getItem('user') && <button className='btn text-slate-300 bg-slate-700 hover:text-slate-700 hover:bg-gray-300' onClick={handleLogout}>Log Out</button>}
         </ul>
