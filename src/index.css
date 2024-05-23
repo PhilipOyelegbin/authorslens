@@ -13,6 +13,7 @@
 /* .slick-slide {
   max-width: 520px !important;
 } */
+
 .slick-slide > div {
   margin: 0 10px;
 }
@@ -79,8 +80,5 @@
 
   .btn {
     @apply text-lg text-center bg-[#C31192] text-slate-200 hover:bg-slate-200 hover:text-[#C31192] rounded-md px-5 py-2 ease-linear duration-300;
-  }
-  .card {
-    @apply w-fit h-fit ease-linear duration-300 hover:box-border hover:shadow-md outline-none hover:shadow-slate-700 overflow-hidden mt-1 rounded-2xl;
   }
 }

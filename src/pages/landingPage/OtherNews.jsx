@@ -74,7 +74,7 @@ const OtherNews = () => {
     }, [])
 
   return (
-    <section id="other-news">
+    <section id="other-news" className="col-span-1 w-auto">
         <h2>Other news</h2>
         {loading ? <h4 className="text-center my-5">Loading...</h4> : error && <h4 className="text-center my-5">{error}</h4>}
         {/* <div className='grid grid-cols-1 gap-5 mt-5'>
@@ -92,7 +92,7 @@ const OtherNews = () => {
         </div> */}
         <Slider {...settings}>
             {news && news?.map(news => (
-                <figure className='card shadow-md shadow-slate-500 rounded-2xl h-[430px] my-2 w-fit' key={news.uuid}>
+                <figure className='shadow-md shadow-slate-500 rounded-2xl w-fit h-fit my-2' key={news.uuid}>
                     <img className='w-full h-56 object-fill rounded-t-2xl' src={news.image_url || "cover-image"} loading="lazy" alt="cover_image" />
                     <figcaption className='p-3'>
                         <h4 className="line-clamp-1">{news.title || "Unknown"}</h4>

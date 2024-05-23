@@ -13,7 +13,7 @@ const Home = () => {
     <>
       <Hero/>
       <LatestBlogs/>
-      <div className='flex flex-col lg:flex-wrap gap-5 px-5 my-10 md:px-20'>
+      <div className='flex flex-col lg:flex-row gap-5 px-5 my-10 md:px-20'>
         <LatestNews/>
         <OtherNews/>
       </div>

@@ -27,7 +27,7 @@ const LatestNews = () => {
 
   return (
     <section id="latest-blogs" className='col-span-2'>
-        <h2>Recent news</h2>
+        <h2>Hot news</h2>
         {loading ? <h4 className="text-center my-5">Loading...</h4> : error && <h4 className="text-center my-5">{error}</h4>}
         <div className='grid grid-cols-1 gap-5 md:grid-cols-2 mt-5'>
             {LatestNews && LatestNews?.map(news => (
