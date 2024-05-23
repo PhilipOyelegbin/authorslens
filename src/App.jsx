@@ -14,7 +14,6 @@ const Auth = lazy(() => import('./pages/bloggerPage/Auth'));
 const Write = lazy(() => import('./pages/bloggerPage/Write'));
 const Error = lazy(() => import('./components/Error'));
 const Blog = lazy(() => import('./pages/blogPage/Blog'));
-const News = lazy(() => import('./pages/newsPage/News'));
 const SingleBlog = lazy(() => import('./components/SingleBlog'));
 const Edit = lazy(() => import('./pages/bloggerPage/Edit'));
 const ResetPortal = lazy(() => import('./pages/bloggerPage/ResetPortal'));
@@ -27,7 +26,6 @@ function App() {
       <Route path='/' element={<SharedLayout/>} errorElement={<Error/>}>
         <Route index element={<Home/>}/>
         <Route path='blogs' element={<Blog/>}/>
-        <Route path='news' element={<News/>}/>
         <Route path='about-us' element={<Founders/>}/>
         <Route path='register' element={<Register/>}/>
         <Route path='login' element={<Login/>}/>

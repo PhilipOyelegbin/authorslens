@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Hero from './Hero';
 import LatestBlogs from './LatestBlogs';
 import LatestNews from './LatestNews';
+import OtherNews from './OtherNews';
 
 const Home = () => {
   useEffect(() => {
@@ -12,7 +13,10 @@ const Home = () => {
     <>
       <Hero/>
       <LatestBlogs/>
-      <LatestNews/>
+      <div className='flex flex-col lg:flex-wrap gap-5 px-5 my-10 md:px-20'>
+        <LatestNews/>
+        <OtherNews/>
+      </div>
     </>
   )
 }

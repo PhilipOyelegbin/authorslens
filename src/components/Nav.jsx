@@ -19,8 +19,7 @@ const Nav = () => {
     {id: 1, label: 'Home', link: '/'},
     {id: 2, label: 'About Us', link: 'about-us'},
     {id: 3, label: 'Blogs', link: 'blogs'},
-    {id: 4, label: 'News', link: 'news'},
-    {id: 5, label: 'Write', link: 'write'},
+    {id: 4, label: 'Write', link: 'write'},
   ];
 
   show ? document.getElementById("root").classList.add("fixed") : document.getElementById("root").classList.remove("fixed");

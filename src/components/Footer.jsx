@@ -13,7 +13,6 @@ const Footer = () => {
           <li><Link to="/" className='hover:text-slate-400'>Home</Link></li>
           <li><Link to="about-us" className='hover:text-slate-400'>About Us</Link></li>
           <li><Link to="blogs" className='hover:text-slate-400'>Blogs</Link></li>
-          <li><Link to="news" className='hover:text-slate-400'>News</Link></li>
           <li><Link to="write" className='hover:text-slate-400'>Write</Link></li>
         </ul>
       </div>
