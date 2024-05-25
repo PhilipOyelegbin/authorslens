@@ -10,9 +10,15 @@
   line-height: 1.5;
 }
 
-/* .slick-slide {
-  max-width: 520px !important;
-} */
+.slick-slider {
+  margin: 0 auto;
+  max-width: 700px !important;
+}
+@media screen and (min-width: 1024px) {
+  .slick-slider {
+    width: 400px !important;
+  }
+}
 
 .slick-slide > div {
   margin: 0 10px;

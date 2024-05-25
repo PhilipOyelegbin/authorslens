@@ -12,32 +12,14 @@ const OtherNews = () => {
     
     const settings = {
         dots: true,
-        infinite: true,
-        slidesToShow: 3,
+        infinite: false,
+        slidesToShow: 1,
         slidesToScroll: 1,
         speed: 500,
         cssEase: "linear",
         nextArrow: <NextArrow/>,
         prevArrow: <PrevArrow/>,
         initialSlide: 0,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                infinite: true
-              }
-            },
-            {
-              breakpoint: 568,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                infinite: true
-              }
-            }
-          ]
     };
 
     // function to control the slide to the next slide
@@ -74,23 +56,10 @@ const OtherNews = () => {
     }, [])
 
   return (
-    <section id="other-news" className="col-span-1 w-auto">
+    <section id="other-news" className="col-span-1 lg:border-l-2 lg:pl-3">
         <h2>Other news</h2>
         {loading ? <h4 className="text-center my-5">Loading...</h4> : error && <h4 className="text-center my-5">{error}</h4>}
-        {/* <div className='grid grid-cols-1 gap-5 mt-5'>
-            {news && news?.map(news => (
-                <figure className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-translate-y-2' key={news.uuid}>
-                    <img className='w-full h-56 object-fill rounded-t-2xl' src={news.image_url || "cover-image"} loading="lazy" alt="cover_image" />
-                    <figcaption className='p-3'>
-                        <h4 className="line-clamp-1">{news.title || "Unknown"}</h4>
-                        <h6 className='text-[#C31192]'>{news.source || "Unknown"}</h6>
-                        <p className='my-3 line-clamp-5' dangerouslySetInnerHTML={{__html: news.description}}></p>
-                        <Link to={news.url} className='btn' target="_blank">Read more</Link>
-                    </figcaption>
-                </figure>
-            ))}
-        </div> */}
-        <Slider {...settings}>
+        {news && <Slider {...settings}>
             {news && news?.map(news => (
                 <figure className='shadow-md shadow-slate-500 rounded-2xl w-fit h-fit my-2' key={news.uuid}>
                     <img className='w-full h-56 object-fill rounded-t-2xl' src={news.image_url || "cover-image"} loading="lazy" alt="cover_image" />
@@ -102,7 +71,7 @@ const OtherNews = () => {
                     </figcaption>
                 </figure>
             ))}
-        </Slider>
+        </Slider>}
     </section>
   )
 }
