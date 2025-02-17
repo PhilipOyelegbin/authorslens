@@ -6,7 +6,7 @@ import { Skeleton } from "../../components/Skeleton";
 
 const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 9;
+  const blogsPerPage = 8;
   const dispatch = useDispatch();
   const { loading, blogs, error } = useSelector((state) => state.blogs);
 
@@ -49,9 +49,8 @@ const BlogList = () => {
           : currentBlogs &&
             currentBlogs?.map((blog) => (
               <figure
-                className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-skew-x-2'
-                key={blog.id}
-              >
+                className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:scale-105'
+                key={blog.id}>
                 <img
                   className='w-full h-56 object-fill rounded-t-2xl'
                   src={blog.cover_image || "cover-image"}
@@ -66,8 +65,7 @@ const BlogList = () => {
                   </h6>
                   <p
                     className='my-3 line-clamp-4'
-                    dangerouslySetInnerHTML={{ __html: blog.content }}
-                  ></p>
+                    dangerouslySetInnerHTML={{ __html: blog.content }}></p>
                   <Link to={`/blog/${blog.id}`} className='btn'>
                     Read more
                   </Link>
@@ -76,13 +74,12 @@ const BlogList = () => {
             ))}
       </div>
 
-      <ul className='flex flex-wrap justify-center items-center gap-1 w-fit mx-auto mt-3'>
+      <ul className='flex flex-wrap justify-center items-center gap-1 w-fit mx-auto mt-5'>
         {pageNumbers.map((number) => (
           <li
             key={number}
             className='px-3 py-2 m-0 bg-[#cf6eb3] text-slate-200 ease-in-out duration-300 cursor-pointer hover:bg-[#C31192] hover:animate-pulse rounded-full'
-            onClick={() => paginate(number)}
-          >
+            onClick={() => paginate(number)}>
             {number}
           </li>
         ))}

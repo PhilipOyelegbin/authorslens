@@ -29,9 +29,8 @@ const LatestBlogs = () => {
           : latest_blogs &&
             latest_blogs?.map((blog) => (
               <figure
-                className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:-skew-x-2'
-                key={blog.id}
-              >
+                className='shadow-md shadow-slate-500 rounded-2xl ease-in-out duration-300 hover:scale-105'
+                key={blog.id}>
                 <img
                   className='w-full h-56 object-fill rounded-t-2xl'
                   src={blog.cover_image || "cover-image"}
@@ -46,8 +45,7 @@ const LatestBlogs = () => {
                   </h6>
                   <p
                     className='my-3 line-clamp-5'
-                    dangerouslySetInnerHTML={{ __html: blog.content }}
-                  ></p>
+                    dangerouslySetInnerHTML={{ __html: blog.content }}></p>
                   <Link to={`/blog/${blog.id}`} className='btn'>
                     Read more
                   </Link>

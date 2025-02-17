@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -30,43 +32,48 @@
 
 @layer base {
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     color: #13274f;
   }
 
   h1 {
-    @apply text-2xl font-bold;
+    @apply text-3xl font-bold;
   }
 
   h2 {
-    @apply text-[22px] leading-7 font-semibold;
+    @apply text-2xl font-semibold;
   }
 
   h3 {
-    @apply text-xl font-medium;
+    @apply text-[22px] leading-7 font-medium;
   }
 
   h4 {
-    @apply text-lg font-medium;
+    @apply text-xl font-medium;
   }
 
   h5 {
-    @apply text-[16px] leading-5 font-normal;
+    @apply text-lg font-normal;
   }
 
   h6 {
-    @apply text-sm font-normal;
+    @apply text-base font-normal;
   }
 
   p {
-    @apply text-xs font-light;
+    @apply text-sm font-light;
   }
 
-  h1, h2, h3, h4 {
-    font-family: 'Josefin Sans', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Josefin Sans", sans-serif;
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply w-full bg-inherit border-b border-slate-500 outline-none px-2 pb-1;
   }
 }
