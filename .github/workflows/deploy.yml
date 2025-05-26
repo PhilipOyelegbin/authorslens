@@ -43,9 +43,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Deploying docker app to EC2 instance..."
-            docker pull ${{ secrets.DOCKER_USERNAME }}/authorslens:latest && \
-            docker stop authorslens || true && \
-            docker rm authorslens || true && \
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/authorslens:latest && \
+            sudo docker stop authorslens || true && \
+            sudo docker rm authorslens || true && \
             echo "${{ secrets.ALL_ENV }}" > .env && \
-            docker run -d --name authorslens --env-file .env -p 80:80 ${{ secrets.DOCKER_USERNAME }}/authorslens:latest && \
+            sudo docker run -d --name authorslens --env-file .env -p 80:80 ${{ secrets.DOCKER_USERNAME }}/authorslens:latest && \
             echo "Deployment completed successfully!"
